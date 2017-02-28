@@ -9,9 +9,9 @@ public class ImpaleScript : MonoBehaviour {
 		
 	}
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name == "Foot Cube")
         {
             Debug.Log("OUCH");
         }

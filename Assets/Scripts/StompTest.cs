@@ -51,7 +51,7 @@ public class StompTest : MonoBehaviour {
 		// Calcuate the current frame's acceleration
 		currentVelocity = Vector3.Distance(previousPosition, transform.position);
         currentVelocity /= Time.deltaTime;
-        Debug.Log(currentVelocity);
+        //Debug.Log(currentVelocity);
 
 		if (selectedMode == mode.Stomp)
 		{
