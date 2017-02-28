@@ -8,6 +8,14 @@ public class ImpaleScript : MonoBehaviour {
 	void Start () {
 		
 	}
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            Debug.Log("OUCH");
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
