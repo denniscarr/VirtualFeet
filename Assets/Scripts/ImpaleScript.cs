@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class ImpaleScript : MonoBehaviour {
 
+    GameObject lightSource;
+    GameObject door;
+
+    public AudioClip hurt;
+    AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
-		
+
+        lightSource = GameObject.Find("Directional Light");
+        door = GameObject.Find("Door");
+        audioSource = door.GetComponent<AudioSource>();
 	}
 
     void OnTriggerEnter(Collider other)
@@ -14,6 +23,18 @@ public class ImpaleScript : MonoBehaviour {
         if (other.gameObject.name == "Foot Cube")
         {
             Debug.Log("OUCH");
+            audioSource.clip = hurt;
+            audioSource.Play();
+            lightSource.GetComponent<Light>().enabled = false;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Foot Cube")
+        {
+            Debug.Log("OUCH");
+            lightSource.GetComponent<Light>().enabled = true;
         }
     }
 	
