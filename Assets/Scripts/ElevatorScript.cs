@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ElevatorScript : MonoBehaviour {
 
@@ -53,7 +54,16 @@ public class ElevatorScript : MonoBehaviour {
             Debug.Log("Elevator Closing");
             isElevatorOpen = false;
             elevatorDoor.transform.Translate(Vector3.down * speed * Time.deltaTime);
+            StartCoroutine(SceneChange(5));
         }
+
+    }
+
+    IEnumerator SceneChange(float time)
+    {
+        yield return new WaitForSeconds(time);
+        isElevatorClosing = false;
+        SceneManager.LoadScene("Level1");
 
     }
 }
