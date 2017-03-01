@@ -5,19 +5,19 @@ using UnityEngine;
 public class StompTest : MonoBehaviour {
 
 	// For selecting the mode of the footstep tester.
-	public enum mode
+	public enum footstepMode
 	{
 		Stomp,
 		Tiptoe
 	}
 
-	public mode selectedMode = mode.Stomp;
+	public footstepMode selectedMode = footstepMode.Stomp;
 
+
+    // USED FOR TESTING VELOCITY.
 	Vector3 previousPosition;
-
 	float previousAcceleration;
 	float currentVelocity;
-
 	bool onFloor = false;
 
     // USED FOR STOMPING
@@ -32,6 +32,9 @@ public class StompTest : MonoBehaviour {
 	// USED FOR TIPTOEING
 	public float tipToeTooFast = 0.01f;	  // What is considered too fast when tiptoeing.
     AudioSource audioSource;
+
+    // USED FOR PICKING UP/DROPPING OBJECTS
+    bool footGlue = false;
 
 
 	void Start ()
@@ -53,7 +56,7 @@ public class StompTest : MonoBehaviour {
         currentVelocity /= Time.deltaTime;
         //Debug.Log(currentVelocity);
 
-		if (selectedMode == mode.Stomp)
+		if (selectedMode == footstepMode.Stomp)
 		{
 			// Get the time since the last stomp.
 			timeSinceLastStomp += Time.deltaTime;
@@ -61,6 +64,7 @@ public class StompTest : MonoBehaviour {
 			// See if the foot is moving quickly enough to be considered a stomp and the cooldown is over.
 			if (currentVelocity >= stompSpeed && timeSinceLastStomp >= stompCooldown) {
 				readyForStomp = true;
+                Debug.Log(readyForStomp);
 			} else {
 				readyForStomp = false;
 			}
@@ -83,7 +87,7 @@ public class StompTest : MonoBehaviour {
 			}
 		}
 
-		else if (selectedMode == mode.Tiptoe)
+		else if (selectedMode == footstepMode.Tiptoe)
 		{
 			if (onFloor)
 			{
@@ -106,12 +110,32 @@ public class StompTest : MonoBehaviour {
 
 	/* Collision */
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Foot Pickup" && footGlue)
+        {
+            Debug.Log("Touched a pickup item.");
+
+            // Attach to foot with joint.
+            SpringJoint newJoint = collision.gameObject.AddComponent<SpringJoint>();
+            newJoint.connectedBody = GetComponent<Rigidbody>();
+            newJoint.spring = 200f;
+//            newJoint.
+            newJoint.breakForce = 20f;
+        }
+    }
+
 	void OnTriggerEnter(Collider collider) 
 	{
-		if (collider.tag == "Floor")
-		{
-			onFloor = true;
-		}
+        if (collider.tag == "Floor")
+        {
+            onFloor = true;
+        }
+        else if (collider.tag == "Glue")
+        {
+            GetComponent<MeshRenderer>().material = collider.GetComponent<MeshRenderer>().material;
+            footGlue = true;
+        }
 	}
 
 	void OnTriggerExit(Collider collider)
