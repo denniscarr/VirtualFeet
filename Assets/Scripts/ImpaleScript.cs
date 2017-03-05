@@ -36,12 +36,10 @@ public class ImpaleScript : MonoBehaviour {
             impaledCount += 1;
             Debug.Log("ImpaledCount = " + impaledCount);
         }
-    }
 
-    void OnCollisionEnter(Collision other)
-    {
         if (other.gameObject.name == ("HeadCollider"))
         {
+            Debug.Log("DEAD HEAD");
             SceneManager.LoadScene("Lobby");
         }
     }
