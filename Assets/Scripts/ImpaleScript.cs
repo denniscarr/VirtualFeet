@@ -25,7 +25,7 @@ public class ImpaleScript : MonoBehaviour {
             Debug.Log("OUCH");
             audioSource.clip = hurt;
             audioSource.Play();
-            lightSource.GetComponent<Light>().enabled = false;
+            lightSource.GetComponent<Light>().color = Color.blue;
         }
     }
 
@@ -34,7 +34,7 @@ public class ImpaleScript : MonoBehaviour {
         if (other.gameObject.name == "Foot Cube")
         {
             Debug.Log("OUCH");
-            lightSource.GetComponent<Light>().enabled = true;
+            lightSource.GetComponent<Light>().color = Color.red;
         }
     }
 	

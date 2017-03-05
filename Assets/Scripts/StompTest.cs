@@ -8,7 +8,8 @@ public class StompTest : MonoBehaviour {
 	public enum footstepMode
 	{
 		Stomp,
-		Tiptoe
+		Tiptoe,
+		None
 	}
 
 	public footstepMode selectedMode = footstepMode.Stomp;
@@ -35,6 +36,8 @@ public class StompTest : MonoBehaviour {
 
     // USED FOR PICKING UP/DROPPING OBJECTS
     bool footGlue = false;
+    public float jointSpring = 200f;
+    public float jointBreakForce = 50f;
 
 
 	void Start ()
@@ -119,9 +122,9 @@ public class StompTest : MonoBehaviour {
             // Attach to foot with joint.
             SpringJoint newJoint = collision.gameObject.AddComponent<SpringJoint>();
             newJoint.connectedBody = GetComponent<Rigidbody>();
-            newJoint.spring = 200f;
+            newJoint.spring = jointSpring;
 //            newJoint.
-            newJoint.breakForce = 20f;
+            newJoint.breakForce = jointBreakForce;
         }
     }
 
