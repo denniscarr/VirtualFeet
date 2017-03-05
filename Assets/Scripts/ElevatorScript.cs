@@ -88,6 +88,8 @@ public class ElevatorScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         isElevatorClosing = false;
+		isElevatorOpen = false;
+		doorOpen = false;
         SceneManager.LoadScene("Level1");
     }
 }
