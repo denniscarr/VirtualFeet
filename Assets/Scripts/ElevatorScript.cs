@@ -14,10 +14,11 @@ public class ElevatorScript : MonoBehaviour {
     public static bool isElevatorClosing = false;
 	Transform headCollider;
 	public GameObject readyLight;
+	bool lightOn;
 
 	void Start()
 	{
-		headCollider = GameObject.Find("HeadCollider").transform;
+		headCollider = GameObject.Find("FollowHead").transform;
 	}
 
     void OnTriggerStay(Collider other)
@@ -50,6 +51,14 @@ public class ElevatorScript : MonoBehaviour {
             Debug.Log("Elevator Opening");
             isElevatorClosing = false;
             elevatorDoor.transform.Translate(Vector3.up * speed * Time.deltaTime);
+			
+			// If we've gone above the player's head, turn on the light.
+			if (elevatorDoor.transform.position.y-elevatorDoor.transform.localScale.y/2 >= headCollider.position.y + .15f && !lightOn)
+			{
+				readyLight.GetComponent<Light>().intensity = 5f;
+				lightOn = true;
+			}
+			
 			if (elevatorDoor.transform.localPosition.y >= openHeight)
 			{
 				doorOpen = true;
@@ -63,8 +72,9 @@ public class ElevatorScript : MonoBehaviour {
             if (elevatorDoor.transform.localPosition.y > closedHeight)
 			{
 				elevatorDoor.transform.Translate(Vector3.down * speed * Time.deltaTime);
+				readyLight.GetComponent<Light>().intensity -= 1f*Time.deltaTime;
 			}
-			else
+			else if (elevatorDoor.transform.localPosition.y <= closedHeight && lightOn)
 			{
 				StartCoroutine(SceneChange(0));
 			}
