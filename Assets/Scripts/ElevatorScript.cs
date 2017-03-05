@@ -5,21 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ElevatorScript : MonoBehaviour {
 
-    GameObject elevatorDoor;
+    public GameObject elevatorDoor;
     public float speed;
+	float openHeight = 4.5f;	// How high the elevator door is when it is considered 'open'
+	float closedHeight = 1.583f;			// How high the elevator door is when it is considered 'closed'
     public static bool isElevatorOpen = false;
+	public static bool doorOpen = false;
     public static bool isElevatorClosing = false;
 
-	// Use this for initialization
-	void Start () {
 
-        elevatorDoor = GameObject.Find("Door");
 
-	}
-
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (this.name == "ElevatorOpenPos")
+        if (this.name == "Open Trigger")
         {
             if (other.gameObject.name == "Foot Cube")
             {
@@ -29,7 +27,7 @@ public class ElevatorScript : MonoBehaviour {
             }
         }
 
-        if(this.name == "ElevatorClosePos")
+        if(this.name == "Close Trigger")
         {
             if (other.gameObject.name == "Foot Cube")
             {
@@ -42,21 +40,33 @@ public class ElevatorScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (isElevatorOpen == true)
+        if (isElevatorOpen == true && doorOpen == false)
         {
             Debug.Log("Elevator Opening");
             isElevatorClosing = false;
             elevatorDoor.transform.Translate(Vector3.up * speed * Time.deltaTime);
+			if (elevatorDoor.transform.localPosition.y >= openHeight)
+			{
+				doorOpen = true;
+			}
         }
 
         if (isElevatorClosing == true)
         {
             Debug.Log("Elevator Closing");
             isElevatorOpen = false;
-            elevatorDoor.transform.Translate(Vector3.down * speed * Time.deltaTime);
-            StartCoroutine(SceneChange(5));
+            if (elevatorDoor.transform.localPosition.y > closedHeight)
+			{
+				elevatorDoor.transform.Translate(Vector3.down * speed * Time.deltaTime);
+			}
+			else
+			{
+				StartCoroutine(SceneChange(0));
+			}
         }
 
+		isElevatorOpen = false;
+		isElevatorClosing = false;
     }
 
     IEnumerator SceneChange(float time)
@@ -64,6 +74,5 @@ public class ElevatorScript : MonoBehaviour {
         yield return new WaitForSeconds(time);
         isElevatorClosing = false;
         SceneManager.LoadScene("Level1");
-
     }
 }
