@@ -38,6 +38,14 @@ public class ImpaleScript : MonoBehaviour {
         }
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.name == ("HeadCollider"))
+        {
+            SceneManager.LoadScene("Lobby");
+        }
+    }
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Foot Cube")
@@ -53,7 +61,7 @@ public class ImpaleScript : MonoBehaviour {
         if (impaledCount > ceilingTrigger)
         {
             ceiling.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            StartCoroutine(WaitTillDeath(6));
+            //StartCoroutine(WaitTillDeath(6));
         }
 		
 	}
