@@ -12,8 +12,13 @@ public class ElevatorScript : MonoBehaviour {
     public static bool isElevatorOpen = false;
 	public static bool doorOpen = false;
     public static bool isElevatorClosing = false;
+	Transform headCollider;
+	public GameObject readyLight;
 
-
+	void Start()
+	{
+		headCollider = GameObject.Find("HeadCollider").transform;
+	}
 
     void OnTriggerStay(Collider other)
     {
