@@ -11,9 +11,10 @@ public class ImpaleScript : MonoBehaviour {
     public float ceilingTrigger;
 
     GameObject lightSource;
-    GameObject door;
+    GameObject room;
 
     public AudioClip hurt;
+    public AudioClip spikeEngine;
     AudioSource audioSource;
 
 	// Use this for initialization
@@ -21,8 +22,8 @@ public class ImpaleScript : MonoBehaviour {
 
         impaledCount = 0;
         lightSource = GameObject.Find("Directional Light");
-        door = GameObject.Find("Door");
-        audioSource = door.GetComponent<AudioSource>();
+        room = GameObject.Find("Room");
+        audioSource = room.GetComponent<AudioSource>();
 	}
 
     void OnTriggerEnter(Collider other)
@@ -30,8 +31,7 @@ public class ImpaleScript : MonoBehaviour {
         if (other.gameObject.name == "Foot Cube")
         {
             Debug.Log("OUCH");
-            audioSource.clip = hurt;
-            audioSource.Play();
+            audioSource.PlayOneShot(hurt);
             lightSource.GetComponent<Light>().color = Color.blue;
             impaledCount += 1;
             Debug.Log("ImpaledCount = " + impaledCount);
@@ -58,6 +58,7 @@ public class ImpaleScript : MonoBehaviour {
 
         if (impaledCount > ceilingTrigger)
         {
+            audioSource.PlayOneShot(spikeEngine);
             ceiling.transform.Translate(Vector3.forward * speed * Time.deltaTime);
             //StartCoroutine(WaitTillDeath(6));
         }
