@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ImpaleScript : MonoBehaviour {
+
+    public GameObject ceiling;
+    float impaledCount;
+    public float speed;
+    public float ceilingTrigger;
 
     GameObject lightSource;
     GameObject door;
@@ -13,6 +19,7 @@ public class ImpaleScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        impaledCount = 0;
         lightSource = GameObject.Find("Directional Light");
         door = GameObject.Find("Door");
         audioSource = door.GetComponent<AudioSource>();
@@ -26,6 +33,8 @@ public class ImpaleScript : MonoBehaviour {
             audioSource.clip = hurt;
             audioSource.Play();
             lightSource.GetComponent<Light>().color = Color.blue;
+            impaledCount += 1;
+            Debug.Log("ImpaledCount = " + impaledCount);
         }
     }
 
@@ -40,6 +49,18 @@ public class ImpaleScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (impaledCount > ceilingTrigger)
+        {
+            ceiling.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            StartCoroutine(WaitTillDeath(6));
+        }
 		
 	}
+
+    IEnumerator WaitTillDeath(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene("Lobby");
+    }
 }
