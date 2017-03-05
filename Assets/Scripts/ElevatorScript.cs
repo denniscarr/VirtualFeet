@@ -16,6 +16,10 @@ public class ElevatorScript : MonoBehaviour {
 	public GameObject readyLight;
 	bool lightOn;
 
+    GameObject backWall;
+    public AudioSource audioSource;
+    public AudioClip elevatorBeep;
+
 	void Start()
 	{
 		headCollider = GameObject.Find("FollowHead").transform;
@@ -56,6 +60,7 @@ public class ElevatorScript : MonoBehaviour {
 			if (elevatorDoor.transform.position.y-elevatorDoor.transform.localScale.y/2 >= headCollider.position.y + .15f && !lightOn)
 			{
 				readyLight.GetComponent<Light>().intensity = 5f;
+                audioSource.PlayOneShot(elevatorBeep);
 				lightOn = true;
 			}
 			
