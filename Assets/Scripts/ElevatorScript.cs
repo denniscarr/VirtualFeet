@@ -15,6 +15,7 @@ public class ElevatorScript : MonoBehaviour {
 	Transform headCollider;
 	public GameObject readyLight;
 	bool lightOn;
+    public int nextLevel;
 
     GameObject backWall;
     public AudioSource audioSource;
@@ -95,6 +96,6 @@ public class ElevatorScript : MonoBehaviour {
         isElevatorClosing = false;
 		isElevatorOpen = false;
 		doorOpen = false;
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level"+nextLevel);
     }
 }
