@@ -49,6 +49,7 @@ public class Breakability : MonoBehaviour {
         if (targetObject.GetComponent<MeshRenderer>() != null && targetObject.GetComponent<MeshFilter>() != null)
         {
             GameObject shatterBuddy = Instantiate(targetObject.gameObject, targetObject.position, Quaternion.identity);
+            shatterBuddy.transform.parent = transform;
 
             // Give the shatterbuddy a rigidbody.
             if (shatterBuddy.GetComponent<Rigidbody>() == null)
