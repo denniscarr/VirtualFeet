@@ -55,6 +55,14 @@ public class StompTest : MonoBehaviour {
 
 	void Update ()
 	{
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb.velocity.magnitude > 20)
+        {
+            Vector3 vel = rb.velocity;
+            vel = Vector3.ClampMagnitude(vel, 20);
+            rb.velocity = vel;
+        }
+
 		// Calcuate the current frame's acceleration
 		currentVelocity = Vector3.Distance(previousPosition, transform.position);
         currentVelocity /= Time.deltaTime;
@@ -68,7 +76,7 @@ public class StompTest : MonoBehaviour {
 			// See if the foot is moving quickly enough to be considered a stomp and the cooldown is over.
 			if (currentVelocity >= stompSpeed && timeSinceLastStomp >= stompCooldown) {
 				readyForStomp = true;
-                Debug.Log(readyForStomp);
+                //Debug.Log(readyForStomp);
 			} else {
 				readyForStomp = false;
 			}
