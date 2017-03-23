@@ -20,6 +20,7 @@ public class StompTest : MonoBehaviour {
 	float previousAcceleration;
 	float currentVelocity;
 	bool onFloor = false;
+    public bool tooFast;
 
     // USED FOR STOMPING
 	public float stompSpeed = 0.01f;	// How fast the foot has to be travelling to trigger a stomp.
@@ -31,7 +32,7 @@ public class StompTest : MonoBehaviour {
 	public GameObject stompExplosion;
 
 	// USED FOR TIPTOEING
-	public float tipToeTooFast = 0.01f;	  // What is considered too fast when tiptoeing.
+	public float tipToeTooFast = 1f;	  // What is considered too fast when tiptoeing.
     AudioSource audioSource;
 
     // USED FOR PICKING UP/DROPPING OBJECTS
@@ -57,7 +58,7 @@ public class StompTest : MonoBehaviour {
 		// Calcuate the current frame's acceleration
 		currentVelocity = Vector3.Distance(previousPosition, transform.position);
         currentVelocity /= Time.deltaTime;
-        //Debug.Log(currentVelocity);
+        Debug.Log(currentVelocity);
 
 		if (selectedMode == footstepMode.Stomp)
 		{
@@ -92,15 +93,16 @@ public class StompTest : MonoBehaviour {
 
 		else if (selectedMode == footstepMode.Tiptoe)
 		{
-			if (onFloor)
-			{
+			//if (onFloor)
+			//{
 				// For now, just make sure the foot is not moving more quickly than a certain speed.
 				if (currentVelocity > tipToeTooFast)
 				{
 					Debug.Log ("Too Fast!");
-                    audioSource.Play();
+                    tooFast = true;
+                    //audioSource.Play();
 				}
-			}
+			//}
 		}
 			
 		// Save previous acceleration.
