@@ -32,6 +32,9 @@ public class ModelFaceController : MonoBehaviour {
     }
     public float speed;
 
+    bool safeToStart;
+    bool isAwake;
+
 
 
 	// Use this for initialization
@@ -40,6 +43,9 @@ public class ModelFaceController : MonoBehaviour {
         m3D = GetComponent<M3DCharacterManager>();
         footCube = GameObject.Find("Foot Cube");
         stompTest = footCube.GetComponent<StompTest>();
+        safeToStart = false;
+        isAwake = false;
+
 		
 	}
 	
@@ -47,12 +53,24 @@ public class ModelFaceController : MonoBehaviour {
 	void Update () {
 
         //Debug.Log("eyeValue = " + eyeValue);
-
-        if (stompTest.tooFast == true)
+        StartCoroutine(WaitToStart(2));
+        if (safeToStart == true)
+        {
+            if (stompTest.tooFast == true)
+            {
+                isAwake = true;
+            }
+        }
+        if (isAwake == true)
         {
             eyeValue = eyeValue -= Time.deltaTime * speed;
             m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
         }
-		
-	}
+    }
+
+    IEnumerator WaitToStart(float time)
+    {
+        yield return new WaitForSeconds(time);
+        safeToStart = true;
+    }
 }

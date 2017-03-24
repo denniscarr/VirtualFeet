@@ -110,6 +110,10 @@ public class StompTest : MonoBehaviour {
                     tooFast = true;
                     //audioSource.Play();
 				}
+            else
+            {
+                tooFast = false;
+            }
 			//}
 		}
 			
