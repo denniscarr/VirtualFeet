@@ -37,6 +37,9 @@ public class ModelFaceController : MonoBehaviour {
     public float faceChangeValue;
     public float faceChangeSpeed;
 
+    public float transformSpeed;
+    public float transformValue;
+
     bool safeToStart;
     bool isAwake;
     bool isSleeping;
@@ -78,8 +81,25 @@ public class ModelFaceController : MonoBehaviour {
         }
         if (isAwake == true)
         {
+            isSleeping = false;
             eyeValue = eyeValue -= Time.deltaTime * eyeSpeed;
             m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
+
+            transformValue = transformValue += Time.deltaTime * transformSpeed;
+            m3D.SetBlendshapeValue("eCTRLAngry", transformValue);
+            m3D.SetBlendshapeValue("eCTRLScream", transformValue);
+            m3D.SetBlendshapeValue("Eyelid_Size", transformValue);
+            m3D.SetBlendshapeValue("EyesIrisSize", transformValue);
+            m3D.SetBlendshapeValue("FaceCenterDepth", transformValue);
+            m3D.SetBlendshapeValue("FHMHellFiend", transformValue);
+
+
+            //eCTRLAngry = 100
+            //eCTRLScream = 100
+            //Eyelid_Size = 100
+            //EyesIrisSize = 100
+            //FaceCenterDepth = 100
+            //FHMHellFiend = 100
         }
         if (isSleeping == true)
         {
