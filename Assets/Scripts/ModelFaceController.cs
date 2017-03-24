@@ -30,10 +30,17 @@ public class ModelFaceController : MonoBehaviour {
             }
         }
     }
-    public float speed;
+    float breathValue = 0;
+    public float eyeSpeed;
+    public float headBobValue;
+    public float headBobSpeed;
+    public float faceChangeValue;
+    public float faceChangeSpeed;
 
     bool safeToStart;
     bool isAwake;
+    bool isSleeping;
+    bool breathOut;
 
 
 
@@ -45,6 +52,8 @@ public class ModelFaceController : MonoBehaviour {
         stompTest = footCube.GetComponent<StompTest>();
         safeToStart = false;
         isAwake = false;
+        isSleeping = true;
+        breathOut = false;
 
 		
 	}
@@ -53,6 +62,8 @@ public class ModelFaceController : MonoBehaviour {
 	void Update () {
 
         //Debug.Log("eyeValue = " + eyeValue);
+       
+        //Debug.Log("isSleeping = " + isSleeping);
         StartCoroutine(WaitToStart(2));
         if (safeToStart == true)
         {
@@ -63,9 +74,49 @@ public class ModelFaceController : MonoBehaviour {
         }
         if (isAwake == true)
         {
-            eyeValue = eyeValue -= Time.deltaTime * speed;
+            eyeValue = eyeValue -= Time.deltaTime * eyeSpeed;
             m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
         }
+        if (isSleeping == true)
+        {
+            Debug.Log("breatheValue = " + breathValue);
+            Debug.Log("breathOut = " + breathOut);
+            if(breathOut == false)
+            {
+                if (breathValue + Time.deltaTime < headBobValue)
+                {
+                    breathValue += Time.deltaTime * headBobSpeed;
+                    faceChangeValue += Time.deltaTime * faceChangeSpeed;
+                    Debug.Log("Breathing Increasing to " + breathValue);
+
+                }
+                else
+                {
+                    breathValue = headBobValue;
+                    breathOut = true;
+                }
+            }else
+            {
+                if (breathValue - Time.deltaTime > 0)
+                {
+                    breathValue -= Time.deltaTime * headBobSpeed;
+                    faceChangeValue -= Time.deltaTime * faceChangeSpeed;
+                    Debug.Log("Breathing Decreasing");
+                }
+                else
+                {
+                    breathValue = 0;
+                    breathOut = false;
+                }
+            }
+           
+            
+            m3D.SetBlendshapeValue("Aged_Posture", breathValue);
+            m3D.SetBlendshapeValue("eCTRLExcitement", faceChangeValue);
+        }
+
+
+
     }
 
     IEnumerator WaitToStart(float time)
