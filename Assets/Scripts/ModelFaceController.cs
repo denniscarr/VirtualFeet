@@ -42,6 +42,9 @@ public class ModelFaceController : MonoBehaviour {
     bool isSleeping;
     bool breathOut;
 
+    AudioSource audioSource;
+    public AudioClip snore;
+
 
 
 	// Use this for initialization
@@ -54,6 +57,7 @@ public class ModelFaceController : MonoBehaviour {
         isAwake = false;
         isSleeping = true;
         breathOut = false;
+        audioSource = GetComponent<AudioSource>();
 
 		
 	}
@@ -88,6 +92,8 @@ public class ModelFaceController : MonoBehaviour {
                     breathValue += Time.deltaTime * headBobSpeed;
                     faceChangeValue += Time.deltaTime * faceChangeSpeed;
                     Debug.Log("Breathing Increasing to " + breathValue);
+                    audioSource.clip = snore;
+                    audioSource.Play();
 
                 }
                 else
