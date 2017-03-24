@@ -45,7 +45,7 @@ public class Breakability : MonoBehaviour {
             }
         }
 
-        // Make sure this object has a MeshRenderer and MeshFilter (i.e. make sure it's visible).
+        // Make sure this object has a MeshRenderer and MeshFilter (i.e.make sure it's visible).
         if (targetObject.GetComponent<MeshRenderer>() != null && targetObject.GetComponent<MeshFilter>() != null)
         {
             GameObject shatterBuddy = Instantiate(targetObject.gameObject, targetObject.position, Quaternion.identity);
@@ -73,8 +73,8 @@ public class Breakability : MonoBehaviour {
             shatterBuddy.transform.localScale = targetObject.lossyScale;
             shatterBuddy.SetActive(false);
             shatterbuddies.Add(shatterBuddy);
-        }
     }
+}
 
 
     void Shatter()
