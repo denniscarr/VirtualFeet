@@ -22,6 +22,12 @@ public class Breakability : MonoBehaviour {
 
         // Setup colliders and rigidbodies, then add them to the above lists.
         SetupShatterBuddies(transform);
+
+        // Make new shatterBuddies into my babies.
+        foreach (GameObject shatterBud in shatterbuddies)
+        {
+            shatterBud.transform.SetParent(transform);
+        }
     }
 
 
@@ -48,15 +54,15 @@ public class Breakability : MonoBehaviour {
         // Make sure this object has a MeshRenderer and MeshFilter (i.e.make sure it's visible).
         if (targetObject.GetComponent<MeshRenderer>() != null && targetObject.GetComponent<MeshFilter>() != null)
         {
+            Debug.Log(targetObject);
+
             GameObject shatterBuddy = Instantiate(targetObject.gameObject, targetObject.position, Quaternion.identity);
-            shatterBuddy.transform.parent = transform;
 
             // Give the shatterbuddy a rigidbody.
             if (shatterBuddy.GetComponent<Rigidbody>() == null)
             {
                 Rigidbody newRigidbody = shatterBuddy.gameObject.AddComponent<Rigidbody>();
                 newRigidbody.isKinematic = true;
-                //rigidbodiesToActivate.Add(newRigidbody);
             }
 
             // Add and set up a mesh collider if there is no collider already, then disable it.
@@ -66,15 +72,14 @@ public class Breakability : MonoBehaviour {
                 newCollider.sharedMesh = shatterBuddy.GetComponent<MeshFilter>().mesh;
                 newCollider.convex = true;
                 newCollider.enabled = false;
-                //meshCollidersToActivate.Add(newCollider);
             }
 
             // Add shatterbuddy to list and deactivate it.
             shatterBuddy.transform.localScale = targetObject.lossyScale;
             shatterBuddy.SetActive(false);
             shatterbuddies.Add(shatterBuddy);
+        }
     }
-}
 
 
     void Shatter()
@@ -82,9 +87,11 @@ public class Breakability : MonoBehaviour {
         // Activate all shatterbuddies.
         foreach (GameObject shatterbuddy in shatterbuddies)
         {
+            shatterbuddy.transform.SetParent(null);
             shatterbuddy.SetActive(true);
             shatterbuddy.GetComponent<Rigidbody>().isKinematic = false;
-            ExplodeAllChildren(shatterbuddy.transform);
+            shatterbuddy.GetComponent<MeshCollider>().enabled = true;
+            shatterbuddy.GetComponent<Rigidbody>().AddExplosionForce(breakExplodeForce, transform.position, 10f);
         }
 
         // Deactivate self.
