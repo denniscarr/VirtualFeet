@@ -11,25 +11,6 @@ public class ModelFaceController : MonoBehaviour {
     StompTest stompTest; //for testing
     public float timer;
     private static float eyeValue = 100;
-    public float EyeValue
-    {
-        get
-        {
-            return eyeValue;
-        }
-        set
-        {
-            eyeValue = value;
-            if (eyeValue > 100)
-            {
-                eyeValue = 100;
-            }
-            if (eyeValue < 0)
-            {
-                eyeValue = 0;
-            }
-        }
-    }
     float breathValue = 0;
     public float eyeSpeed;
     public float headBobValue;
@@ -37,10 +18,19 @@ public class ModelFaceController : MonoBehaviour {
     public float faceChangeValue;
     public float faceChangeSpeed;
 
+    public float transformSpeed;
+    public float transformValue;
+
     bool safeToStart;
     bool isAwake;
     bool isSleeping;
     bool breathOut;
+
+    public Transform target;
+    public GameObject head;
+
+    AudioSource audioSource;
+    public AudioClip snore;
 
 
 
@@ -54,6 +44,8 @@ public class ModelFaceController : MonoBehaviour {
         isAwake = false;
         isSleeping = true;
         breathOut = false;
+        audioSource = GetComponent<AudioSource>();
+        transformValue = 0;
 
 		
 	}
@@ -62,7 +54,7 @@ public class ModelFaceController : MonoBehaviour {
 	void Update () {
 
         //Debug.Log("eyeValue = " + eyeValue);
-       
+
         //Debug.Log("isSleeping = " + isSleeping);
         StartCoroutine(WaitToStart(2));
         if (safeToStart == true)
@@ -74,21 +66,32 @@ public class ModelFaceController : MonoBehaviour {
         }
         if (isAwake == true)
         {
+            isSleeping = false;
             eyeValue = eyeValue -= Time.deltaTime * eyeSpeed;
             m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
+
+            transformValue = transformValue += Time.deltaTime * transformSpeed;
+            m3D.SetBlendshapeValue("eCTRLAngry", transformValue);
+            m3D.SetBlendshapeValue("eCTRLScream", transformValue);
+            m3D.SetBlendshapeValue("Eyelid_Size", transformValue);
+            m3D.SetBlendshapeValue("EyesIrisSize", transformValue);
+            m3D.SetBlendshapeValue("FaceCenterDepth", transformValue);
+            //m3D.SetBlendshapeValue("FHMHellFiend", transformValue);
+            head.transform.LookAt(target);
         }
         if (isSleeping == true)
         {
-            Debug.Log("breatheValue = " + breathValue);
-            Debug.Log("breathOut = " + breathOut);
+            //Debug.Log("breatheValue = " + breathValue);
+            //Debug.Log("breathOut = " + breathOut);
             if(breathOut == false)
             {
                 if (breathValue + Time.deltaTime < headBobValue)
                 {
                     breathValue += Time.deltaTime * headBobSpeed;
                     faceChangeValue += Time.deltaTime * faceChangeSpeed;
-                    Debug.Log("Breathing Increasing to " + breathValue);
-
+                    //Debug.Log("Breathing Increasing to " + breathValue);
+                    audioSource.clip = snore;
+                    audioSource.Play();
                 }
                 else
                 {
@@ -101,7 +104,7 @@ public class ModelFaceController : MonoBehaviour {
                 {
                     breathValue -= Time.deltaTime * headBobSpeed;
                     faceChangeValue -= Time.deltaTime * faceChangeSpeed;
-                    Debug.Log("Breathing Decreasing");
+                    //Debug.Log("Breathing Decreasing");
                 }
                 else
                 {
