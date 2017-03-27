@@ -9,7 +9,7 @@ public class ElevatorScript : MonoBehaviour {
     public float speed;
 	float openHeight = 4.5f;	// How high the elevator door is when it is considered 'open'
 	float closedHeight = 1.583f;			// How high the elevator door is when it is considered 'closed'
-    public static bool isElevatorOpen = false;
+    public static bool isElevatorOpening = false;
 	public static bool doorOpen = false;
     public static bool isElevatorClosing = false;
 	Transform headCollider;
@@ -33,7 +33,7 @@ public class ElevatorScript : MonoBehaviour {
             if (other.gameObject.name == "Foot Cube")
             {
                 Debug.Log("Test working");
-                isElevatorOpen = true;
+                isElevatorOpening = true;
                 isElevatorClosing = false;
             }
         }
@@ -43,15 +43,20 @@ public class ElevatorScript : MonoBehaviour {
             if (other.gameObject.name == "Foot Cube")
             {
                 isElevatorClosing = true;
-                isElevatorOpen = false;
+                isElevatorOpening = false;
             }
         }
+    }
+
+    public void OpenDoor()
+    {
+        isElevatorOpening = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (isElevatorOpen == true && doorOpen == false)
+        if (isElevatorOpening == true && doorOpen == false)
         {
             Debug.Log("Elevator Opening");
             isElevatorClosing = false;
@@ -74,7 +79,7 @@ public class ElevatorScript : MonoBehaviour {
         if (isElevatorClosing == true)
         {
             Debug.Log("Elevator Closing");
-            isElevatorOpen = false;
+            isElevatorOpening = false;
             if (elevatorDoor.transform.localPosition.y > closedHeight)
 			{
 				elevatorDoor.transform.Translate(Vector3.down * speed * Time.deltaTime);
@@ -86,7 +91,7 @@ public class ElevatorScript : MonoBehaviour {
 			}
         }
 
-		isElevatorOpen = false;
+		isElevatorOpening = false;
 		isElevatorClosing = false;
     }
 
@@ -94,7 +99,7 @@ public class ElevatorScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         isElevatorClosing = false;
-		isElevatorOpen = false;
+		isElevatorOpening = false;
 		doorOpen = false;
         SceneManager.LoadScene("Level"+nextLevel);
     }

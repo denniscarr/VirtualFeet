@@ -177,6 +177,8 @@ public class Breakability : MonoBehaviour {
             shatterbuddy.GetComponent<Rigidbody>().AddExplosionForce(breakExplodeForce, transform.position, 10f);
         }
 
+        GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
+
         // Deactivate self.
         gameObject.SetActive(false);
     }
