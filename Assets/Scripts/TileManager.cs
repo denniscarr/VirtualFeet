@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour {
 
+	public GameObject gamemanager;
+
+
 	// Use this for initialization
 	void Start () {
-		
+
+		gamemanager = GameObject.Find ("Game Manager"); 
 	}
 	
 	// Update is called once per frame
@@ -18,9 +22,11 @@ public class TileManager : MonoBehaviour {
 		
 		if (coll.gameObject.tag == "Player") {
 
-			Debug.Log ("touch");
-
 			this.GetComponent<AudioSource>().Play();
+
+			Debug.Log (this.GetComponent<AudioSource> ().clip.name);
+
+			gamemanager.GetComponent<TileLevelManager> ().playersteps.Add(this.GetComponent<AudioSource> ().clip.name);
 
 		}
 	}
