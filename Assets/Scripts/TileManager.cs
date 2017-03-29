@@ -14,9 +14,11 @@ public class TileManager : MonoBehaviour {
 		
 	}
 
-	void OncollisonEnter(Collision coll){
+	void OnTriggerEnter(Collider coll){
 		
-		if (coll.gameObject.tag == "Player2") {
+		if (coll.gameObject.tag == "Player") {
+
+			Debug.Log ("touch");
 
 			this.GetComponent<AudioSource>().Play();
 
