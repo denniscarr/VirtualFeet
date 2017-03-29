@@ -86,7 +86,7 @@ public class TileLevelManager : MonoBehaviour {
 			}
 		}
 		
-		if (i = 6) {
+		if (i == 6) {
 			Win ();
 		}
 	}
