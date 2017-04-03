@@ -1,0 +1,207 @@
+fileFormatVersion: 2
+guid: e69c6faf4c4ac4440a21a3c06f9d05a9
+timeCreated: 1490827891
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: chair:pCube3_chair:polySurface5_initialShadingGroup_chair:polySurface1
+    100002: chair:pCube3_chair:polySurface6_initialShadingGroup_chair:polySurface1
+    100004: chair:pCube4_initialShadingGroup_chair:polySurface1
+    100006: chair:pCylinder1_initialShadingGroup_chair:polySurface1
+    100008: chair:pCylinder2_initialShadingGroup_chair:polySurface1
+    100010: chair:pCylinder3_initialShadingGroup_chair:polySurface1
+    100012: chair:pCylinder4_initialShadingGroup_chair:polySurface1
+    100014: chair:polySurface2_chair:polySurface11_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    100016: chair:polySurface2_chair:polySurface12_chair:polySurface13_initialShadingGroup_chair:polySurface1
+    100018: chair:polySurface3_chair:polySurface10_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    100020: chair:polySurface3_chair:polySurface9_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    100022: chair:polySurface4_chair:polySurface7_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    100024: chair:polySurface4_chair:polySurface8_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    100026: //RootNode
+    100028: initialShadingGroup_pCube3_polySurface5_polySurface1
+    100030: initialShadingGroup_pCube3_polySurface6_polySurface1
+    100032: initialShadingGroup_pCube4_polySurface1
+    100034: initialShadingGroup_pCylinder1_polySurface1
+    100036: initialShadingGroup_pCylinder2_polySurface1
+    100038: initialShadingGroup_pCylinder3_polySurface1
+    100040: initialShadingGroup_pCylinder4_polySurface1
+    100042: initialShadingGroup_polySurface2_polySurface11_polySurface12_polySurface1
+    100044: initialShadingGroup_polySurface2_polySurface12_polySurface13_polySurface1
+    100046: initialShadingGroup_polySurface3_polySurface10_polySurface12_polySurface1
+    100048: initialShadingGroup_polySurface3_polySurface9_polySurface12_polySurface1
+    100050: initialShadingGroup_polySurface4_polySurface7_polySurface12_polySurface1
+    100052: initialShadingGroup_polySurface4_polySurface8_polySurface12_polySurface1
+    400000: chair:pCube3_chair:polySurface5_initialShadingGroup_chair:polySurface1
+    400002: chair:pCube3_chair:polySurface6_initialShadingGroup_chair:polySurface1
+    400004: chair:pCube4_initialShadingGroup_chair:polySurface1
+    400006: chair:pCylinder1_initialShadingGroup_chair:polySurface1
+    400008: chair:pCylinder2_initialShadingGroup_chair:polySurface1
+    400010: chair:pCylinder3_initialShadingGroup_chair:polySurface1
+    400012: chair:pCylinder4_initialShadingGroup_chair:polySurface1
+    400014: chair:polySurface2_chair:polySurface11_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    400016: chair:polySurface2_chair:polySurface12_chair:polySurface13_initialShadingGroup_chair:polySurface1
+    400018: chair:polySurface3_chair:polySurface10_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    400020: chair:polySurface3_chair:polySurface9_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    400022: chair:polySurface4_chair:polySurface7_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    400024: chair:polySurface4_chair:polySurface8_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    400026: //RootNode
+    400028: initialShadingGroup_pCube3_polySurface5_polySurface1
+    400030: initialShadingGroup_pCube3_polySurface6_polySurface1
+    400032: initialShadingGroup_pCube4_polySurface1
+    400034: initialShadingGroup_pCylinder1_polySurface1
+    400036: initialShadingGroup_pCylinder2_polySurface1
+    400038: initialShadingGroup_pCylinder3_polySurface1
+    400040: initialShadingGroup_pCylinder4_polySurface1
+    400042: initialShadingGroup_polySurface2_polySurface11_polySurface12_polySurface1
+    400044: initialShadingGroup_polySurface2_polySurface12_polySurface13_polySurface1
+    400046: initialShadingGroup_polySurface3_polySurface10_polySurface12_polySurface1
+    400048: initialShadingGroup_polySurface3_polySurface9_polySurface12_polySurface1
+    400050: initialShadingGroup_polySurface4_polySurface7_polySurface12_polySurface1
+    400052: initialShadingGroup_polySurface4_polySurface8_polySurface12_polySurface1
+    2300000: chair:pCube3_chair:polySurface5_initialShadingGroup_chair:polySurface1
+    2300002: chair:pCube3_chair:polySurface6_initialShadingGroup_chair:polySurface1
+    2300004: chair:pCube4_initialShadingGroup_chair:polySurface1
+    2300006: chair:pCylinder1_initialShadingGroup_chair:polySurface1
+    2300008: chair:pCylinder2_initialShadingGroup_chair:polySurface1
+    2300010: chair:pCylinder3_initialShadingGroup_chair:polySurface1
+    2300012: chair:pCylinder4_initialShadingGroup_chair:polySurface1
+    2300014: chair:polySurface2_chair:polySurface11_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    2300016: chair:polySurface2_chair:polySurface12_chair:polySurface13_initialShadingGroup_chair:polySurface1
+    2300018: chair:polySurface3_chair:polySurface10_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    2300020: chair:polySurface3_chair:polySurface9_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    2300022: chair:polySurface4_chair:polySurface7_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    2300024: chair:polySurface4_chair:polySurface8_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    2300026: initialShadingGroup_pCube3_polySurface5_polySurface1
+    2300028: initialShadingGroup_pCube3_polySurface6_polySurface1
+    2300030: initialShadingGroup_pCube4_polySurface1
+    2300032: initialShadingGroup_pCylinder1_polySurface1
+    2300034: initialShadingGroup_pCylinder2_polySurface1
+    2300036: initialShadingGroup_pCylinder3_polySurface1
+    2300038: initialShadingGroup_pCylinder4_polySurface1
+    2300040: initialShadingGroup_polySurface2_polySurface11_polySurface12_polySurface1
+    2300042: initialShadingGroup_polySurface2_polySurface12_polySurface13_polySurface1
+    2300044: initialShadingGroup_polySurface3_polySurface10_polySurface12_polySurface1
+    2300046: initialShadingGroup_polySurface3_polySurface9_polySurface12_polySurface1
+    2300048: initialShadingGroup_polySurface4_polySurface7_polySurface12_polySurface1
+    2300050: initialShadingGroup_polySurface4_polySurface8_polySurface12_polySurface1
+    3300000: chair:pCube3_chair:polySurface5_initialShadingGroup_chair:polySurface1
+    3300002: chair:pCube3_chair:polySurface6_initialShadingGroup_chair:polySurface1
+    3300004: chair:pCube4_initialShadingGroup_chair:polySurface1
+    3300006: chair:pCylinder1_initialShadingGroup_chair:polySurface1
+    3300008: chair:pCylinder2_initialShadingGroup_chair:polySurface1
+    3300010: chair:pCylinder3_initialShadingGroup_chair:polySurface1
+    3300012: chair:pCylinder4_initialShadingGroup_chair:polySurface1
+    3300014: chair:polySurface2_chair:polySurface11_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    3300016: chair:polySurface2_chair:polySurface12_chair:polySurface13_initialShadingGroup_chair:polySurface1
+    3300018: chair:polySurface3_chair:polySurface10_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    3300020: chair:polySurface3_chair:polySurface9_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    3300022: chair:polySurface4_chair:polySurface7_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    3300024: chair:polySurface4_chair:polySurface8_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    3300026: initialShadingGroup_pCube3_polySurface5_polySurface1
+    3300028: initialShadingGroup_pCube3_polySurface6_polySurface1
+    3300030: initialShadingGroup_pCube4_polySurface1
+    3300032: initialShadingGroup_pCylinder1_polySurface1
+    3300034: initialShadingGroup_pCylinder2_polySurface1
+    3300036: initialShadingGroup_pCylinder3_polySurface1
+    3300038: initialShadingGroup_pCylinder4_polySurface1
+    3300040: initialShadingGroup_polySurface2_polySurface11_polySurface12_polySurface1
+    3300042: initialShadingGroup_polySurface2_polySurface12_polySurface13_polySurface1
+    3300044: initialShadingGroup_polySurface3_polySurface10_polySurface12_polySurface1
+    3300046: initialShadingGroup_polySurface3_polySurface9_polySurface12_polySurface1
+    3300048: initialShadingGroup_polySurface4_polySurface7_polySurface12_polySurface1
+    3300050: initialShadingGroup_polySurface4_polySurface8_polySurface12_polySurface1
+    4300000: chair:pCube3_chair:polySurface5_initialShadingGroup_chair:polySurface1
+    4300002: chair:pCube3_chair:polySurface6_initialShadingGroup_chair:polySurface1
+    4300004: chair:pCube4_initialShadingGroup_chair:polySurface1
+    4300006: chair:pCylinder1_initialShadingGroup_chair:polySurface1
+    4300008: chair:pCylinder2_initialShadingGroup_chair:polySurface1
+    4300010: chair:pCylinder3_initialShadingGroup_chair:polySurface1
+    4300012: chair:pCylinder4_initialShadingGroup_chair:polySurface1
+    4300014: chair:polySurface2_chair:polySurface11_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    4300016: chair:polySurface2_chair:polySurface12_chair:polySurface13_initialShadingGroup_chair:polySurface1
+    4300018: chair:polySurface3_chair:polySurface10_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    4300020: chair:polySurface3_chair:polySurface9_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    4300022: chair:polySurface4_chair:polySurface7_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    4300024: chair:polySurface4_chair:polySurface8_chair:polySurface12_initialShadingGroup_chair:polySurface1
+    4300026: initialShadingGroup_pCube3_polySurface5_polySurface1
+    4300028: initialShadingGroup_pCube3_polySurface6_polySurface1
+    4300030: initialShadingGroup_pCube4_polySurface1
+    4300032: initialShadingGroup_pCylinder1_polySurface1
+    4300034: initialShadingGroup_pCylinder2_polySurface1
+    4300036: initialShadingGroup_pCylinder3_polySurface1
+    4300038: initialShadingGroup_pCylinder4_polySurface1
+    4300040: initialShadingGroup_polySurface2_polySurface11_polySurface12_polySurface1
+    4300042: initialShadingGroup_polySurface2_polySurface12_polySurface13_polySurface1
+    4300044: initialShadingGroup_polySurface3_polySurface10_polySurface12_polySurface1
+    4300046: initialShadingGroup_polySurface3_polySurface9_polySurface12_polySurface1
+    4300048: initialShadingGroup_polySurface4_polySurface7_polySurface12_polySurface1
+    4300050: initialShadingGroup_polySurface4_polySurface8_polySurface12_polySurface1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.04
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

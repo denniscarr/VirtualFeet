@@ -11,6 +11,8 @@ public class Breakability : MonoBehaviour {
     [SerializeField] List<GameObject> shatterbuddies;
     [SerializeField] List<Transform> shatterbuddyTargetPositions;
 
+    bool broken = false;
+
     void Awake()
     {
         // Tell all mesh pieces to ignore colliision with one another.
@@ -82,6 +84,14 @@ public class Breakability : MonoBehaviour {
         {
             Debug.Log("Shattering");
             Shatter();
+        }
+
+        else if (collision.collider.gameObject.name == "Foot Cube")
+        {
+            Debug.Log("Kicked by player");
+            // Get a direction from the player's foot.
+            //Vector3 direction = collision.transform.position - transform.position;
+            GetComponent<Rigidbody>().AddExplosionForce(collision.relativeVelocity.magnitude * 1.1f, collision.transform.position, 1f, 0.1f, ForceMode.Impulse);
         }
     }
 
@@ -177,8 +187,12 @@ public class Breakability : MonoBehaviour {
             shatterbuddy.GetComponent<Rigidbody>().AddExplosionForce(breakExplodeForce, transform.position, 10f);
         }
 
-        GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
-
+        if (!broken)
+        {
+            GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
+            broken = true;
+        }
+        
         // Deactivate self.
         gameObject.SetActive(false);
     }

@@ -52,8 +52,8 @@ public class ElevatorScript : MonoBehaviour {
     {
         isElevatorOpening = true;
     }
+
 	
-	// Update is called once per frame
 	void Update () {
 
         if (isElevatorOpening == true && doorOpen == false)

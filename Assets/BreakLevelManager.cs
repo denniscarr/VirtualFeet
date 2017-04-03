@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BreakLevelManager : MonoBehaviour {
 
-    int _statuesBroken;
+    [SerializeField] int _statuesBroken;
     public int statuesBroken
     {
         get { return _statuesBroken; }
@@ -17,7 +18,7 @@ public class BreakLevelManager : MonoBehaviour {
             if (statuesBroken >= 6)
             {
                 GameObject.Find("Up Elevator (Conditional Trigger)").GetComponent<ElevatorScript>().OpenDoor();
-            }
+#if`1            }
 
         }
     }
