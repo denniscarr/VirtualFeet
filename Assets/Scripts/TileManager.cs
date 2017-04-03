@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour {
 
+	public GameObject gamemanager;
+
+
 	// Use this for initialization
 	void Start () {
-		
+
+		gamemanager = GameObject.Find ("Game Manager"); 
 	}
 	
 	// Update is called once per frame
@@ -14,11 +18,15 @@ public class TileManager : MonoBehaviour {
 		
 	}
 
-	void OncollisonEnter(Collision coll){
+	void OnTriggerEnter(Collider coll){
 		
-		if (coll.gameObject.tag == "Player2") {
+		if (coll.gameObject.tag == "Player") {
 
 			this.GetComponent<AudioSource>().Play();
+
+			Debug.Log (this.GetComponent<AudioSource> ().clip.name);
+
+			gamemanager.GetComponent<TileLevelManager> ().playersteps.Add(this.GetComponent<AudioSource> ().clip.name);
 
 		}
 	}
