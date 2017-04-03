@@ -53,9 +53,12 @@ public class ModelFaceController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //Debug.Log("eyeValue = " + eyeValue);
+
+        Debug.Log("eyeValue = " + eyeValue);
+        Debug.Log("transformValue = " + transformValue);
 
         //Debug.Log("isSleeping = " + isSleeping);
+
         StartCoroutine(WaitToStart(2));
         if (safeToStart == true)
         {
@@ -119,6 +122,14 @@ public class ModelFaceController : MonoBehaviour {
         }
 
 
+        if (eyeValue <= 0)
+        {
+            eyeValue = 0;
+        }
+        if (transformValue >= 100)
+        {
+            transformValue = 100;
+        }
 
     }
 
