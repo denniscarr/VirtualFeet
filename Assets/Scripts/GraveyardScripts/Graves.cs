@@ -5,6 +5,7 @@ using UnityEngine;
 public class Graves : MonoBehaviour {
 
     protected string name = "Graves";
+    protected float incrementDirt = .1f;
 
     public void OnCollisionEnter(Collision other)
     {

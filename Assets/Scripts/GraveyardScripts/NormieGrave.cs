@@ -21,6 +21,12 @@ public class NormieGrave : Graves {
             if (other.gameObject.tag == "dirt")
             {
                 Destroy(other.gameObject);
+                transform.position += new Vector3(0, incrementDirt, 0);
+                if (transform.position.y > 0)
+                {
+                    incrementDirt = 0;
+                    Debug.Log(incrementDirt);
+                }
             }
             Debug.Log("EW GROSS WRONG. NOT NORMIE");
         }
