@@ -7,19 +7,28 @@ public class TileLevelManager : MonoBehaviour {
 
 	public List<AudioClip> tunes;
 	public List<string> playersteps = new List<string> ();
+	public GameObject start;
 	AudioSource tune;
 	int clipToPlay = 0;
 	[SerializeField] string[] randomtunes;
 	int i;
+	public AudioClip lose;
+	public AudioClip startAudio;
 
 	// Use this for initialization
 	void Start () {
-		
-		randomtunes = new string[6];
+
+		playersteps.Clear ();
 
 		tune = this.gameObject.GetComponent<AudioSource> ();
 
-		PlaySound ();
+		randomtunes = new string[6];
+
+		tune.clip = startAudio;
+
+		tune.Play ();
+
+		Invoke ("PlaySound", 1.5f);
 
 		i = 0;
 		
@@ -28,14 +37,11 @@ public class TileLevelManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//		Debug.Log(playersteps[0]+ " "+ playersteps[1]+ " "+ playersteps[2]+ " "+ playersteps[3]
-//			+ " "+ playersteps[4]+ " "+ playersteps[5]);
-
-		StepCheck ();
-		
+			StepCheck ();
 	}
 
 	void PlaySound () {
+
 
 		if (clipToPlay < 6) {
 
@@ -65,6 +71,7 @@ public class TileLevelManager : MonoBehaviour {
 	}
 
 	void Lose(){
+		
 		SceneManager.LoadScene (3);
 	}
 
@@ -73,12 +80,13 @@ public class TileLevelManager : MonoBehaviour {
 		
 	}
 
-	void StepCheck(){
+	void StepCheck ()
+	{
 
-		if(playersteps.Count != 0){
+		if (playersteps.Count != 0) {
 			if (!playersteps [i].Equals ("null")) {
 				if (randomtunes [i] == playersteps [i]) {
-					Debug.Log ("success "+ i);
+					Debug.Log ("success " + i);
 					i = i + 1;
 				} else {
 					Lose ();
