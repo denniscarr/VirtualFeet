@@ -20,6 +20,10 @@ public class PoopGrave : Graves {
         }
         else
         {
+            if(other.gameObject.tag == "dirt")
+            {
+                Destroy(other.gameObject);
+            }
             Debug.Log("NO. NOT POOP. BAD");
         }
     }

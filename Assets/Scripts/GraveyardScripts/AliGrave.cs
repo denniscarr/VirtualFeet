@@ -20,6 +20,10 @@ public class AliGrave : Graves {
         }
         else
         {
+            if (other.gameObject.tag == "dirt")
+            {
+                Destroy(other.gameObject);
+            }
             Debug.Log("NO BAD! NOT ALI");
         }
     }

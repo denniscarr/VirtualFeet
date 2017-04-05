@@ -18,6 +18,10 @@ public class NormieGrave : Graves {
         }
         else
         {
+            if (other.gameObject.tag == "dirt")
+            {
+                Destroy(other.gameObject);
+            }
             Debug.Log("EW GROSS WRONG. NOT NORMIE");
         }
     }
