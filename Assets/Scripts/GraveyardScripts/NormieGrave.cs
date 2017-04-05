@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NormieGrave : Graves {
 
+    bool normieSkull = false;
+
 	// Use this for initialization
 	void Start () {
         name = "NormieGrave";
@@ -14,19 +16,14 @@ public class NormieGrave : Graves {
         Debug.Log("Skull in the AliGrave!");
         if(other.gameObject.name == "NormieSkull")
         {
+            normieSkull = true;
             Debug.Log("good! Yay! Normie!");
         }
         else
         {
-            if (other.gameObject.tag == "dirt")
+            if (other.gameObject.tag == "dirt" && normieSkull == true)
             {
-                Destroy(other.gameObject);
-                transform.position += new Vector3(0, incrementDirt, 0);
-                if (transform.position.y > 0)
-                {
-                    incrementDirt = 0;
-                    Debug.Log(incrementDirt);
-                }
+                FillMeUp(other);
             }
             Debug.Log("EW GROSS WRONG. NOT NORMIE");
         }

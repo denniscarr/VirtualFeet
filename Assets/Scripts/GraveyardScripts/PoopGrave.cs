@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PoopGrave : Graves {
 
-	// Use this for initialization
-	void Start () {
+    bool poopSkull = false;
+
+    // Use this for initialization
+    void Start () {
 
         name = "PoopGrave";
+
 		
 	}
 
@@ -17,18 +20,13 @@ public class PoopGrave : Graves {
         if(other.gameObject.name == "PoopSkull")
         {
             Debug.Log("YAY POOP LOVE!");
+            poopSkull = true;
         }
         else
         {
-            if(other.gameObject.tag == "dirt")
+            if(other.gameObject.tag == "dirt" && poopSkull == true)
             {
-                Destroy(other.gameObject);
-                transform.position += new Vector3(0, incrementDirt, 0);
-                if (transform.position.y > 0)
-                {
-                    incrementDirt = 0;
-                    Debug.Log(incrementDirt);
-                }
+                FillMeUp(other);
             }
             Debug.Log("NO. NOT POOP. BAD");
         }
