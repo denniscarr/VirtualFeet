@@ -26,7 +26,7 @@ public class Pyre : MonoBehaviour {
 	}
 
 
-    // Makes the player feel like they're on fire and change the scene.
+    // Makes the player feel like they're on fire and changes the scene.
     private void BurnPlayer()
     {
         /* Add effects and stuff here */
@@ -38,7 +38,7 @@ public class Pyre : MonoBehaviour {
 
 
     /// <summary>
-    /// Lights the pyre. (Activates particles and allows player to use in order to leave the scene.)
+    /// Lights the pyre. (Activates particles and allows player to use in order to change the scene.)
     /// </summary>
     public void Light()
     {
