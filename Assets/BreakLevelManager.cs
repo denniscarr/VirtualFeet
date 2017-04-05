@@ -15,11 +15,16 @@ public class BreakLevelManager : MonoBehaviour {
 
             Debug.Log(_statuesBroken);
 
-            if (statuesBroken >= 6)
+            if (statuesBroken >= 0)
             {
-                GameObject.Find("Up Elevator (Conditional Trigger)").GetComponent<ElevatorScript>().OpenDoor();
+                GameObject.Find("Pyre").GetComponent<Pyre>().Light();
             }
-
         }
+    }
+
+
+    private void Update()
+    {
+        GameObject.Find("Pyre").GetComponent<Pyre>().Light();
     }
 }
