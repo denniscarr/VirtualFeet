@@ -8,7 +8,10 @@ public class Skulls : MonoBehaviour {
 
     public void OnCollisionEnter (Collision other)
     {
-        XOnCollisionEnter(other);
+        if (other.gameObject.name == "Foot Cube")
+        {
+            XOnCollisionEnter(other);
+        }
     }
 
     public virtual void XOnCollisionEnter(Collision other)

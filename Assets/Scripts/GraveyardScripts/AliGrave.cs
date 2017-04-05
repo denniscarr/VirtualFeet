@@ -14,6 +14,14 @@ public class AliGrave : Graves {
     public override void XOnCollisionEnter(Collision other)
     {
         Debug.Log("Skull in the AliGrave!");
+        if (other.gameObject.name == "AliSkull")
+        {
+            Debug.Log("GOOD YAY! ALI!");
+        }
+        else
+        {
+            Debug.Log("NO BAD! NOT ALI");
+        }
     }
 
     // Update is called once per frame

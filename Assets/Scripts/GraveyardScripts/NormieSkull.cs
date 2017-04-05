@@ -8,7 +8,6 @@ public class NormieSkull : Skulls {
 	void Start () {
 
         name = "NormieSkull";
-
 	}
 
     public override void XOnCollisionEnter(Collision other)
