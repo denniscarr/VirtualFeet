@@ -15,7 +15,7 @@ public class BreakLevelManager : MonoBehaviour {
 
             Debug.Log(_statuesBroken);
 
-            if (statuesBroken >= 0)
+            if (statuesBroken >= 1)
             {
                 GameObject.Find("Pyre").GetComponent<Pyre>().Light();
             }
@@ -25,6 +25,6 @@ public class BreakLevelManager : MonoBehaviour {
 
     private void Update()
     {
-        GameObject.Find("Pyre").GetComponent<Pyre>().Light();
+        //GameObject.Find("Pyre").GetComponent<Pyre>().Light();
     }
 }

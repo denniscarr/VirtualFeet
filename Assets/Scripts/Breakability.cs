@@ -8,8 +8,8 @@ public class Breakability : MonoBehaviour {
     [SerializeField] float breakExplodeForce = 100f;
 
     // Copies of the individual pieces of the mesh which will fly around when the object is shattered.
-    [SerializeField] List<GameObject> shatterbuddies;
-    [SerializeField] List<Transform> shatterbuddyTargetPositions;
+    [SerializeField] public List<GameObject> shatterbuddies;
+    [SerializeField] public List<Transform> shatterbuddyTargetPositions;
 
     bool broken = false;
 
@@ -152,7 +152,7 @@ public class Breakability : MonoBehaviour {
             shatterBuddy.GetComponent<Rigidbody>().useGravity = false;
             shatterBuddy.GetComponent<MeshCollider>().inflateMesh = true;
             shatterBuddy.GetComponent<MeshCollider>().convex = true;
-            shatterBuddy.GetComponent<MeshCollider>().skinWidth = 0.01f;
+            shatterBuddy.GetComponent<MeshCollider>().skinWidth = 0.017f;
             shatterBuddy.GetComponent<MeshCollider>().enabled = true;
             shatterBuddy.GetComponent<MeshCollider>().isTrigger = true;
             shatterBuddy.GetComponent<MeshCollider>().sharedMesh = shatterBuddy.GetComponent<MeshFilter>().sharedMesh;
