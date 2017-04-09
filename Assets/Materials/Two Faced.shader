@@ -7,9 +7,11 @@
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
-		LOD 200
+		Cull Off
 		
+		LOD 200
 		CGPROGRAM
+
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard fullforwardshadows
 
