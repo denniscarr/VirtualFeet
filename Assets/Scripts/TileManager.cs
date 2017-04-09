@@ -24,6 +24,7 @@ public class TileManager : MonoBehaviour {
 
 			this.GetComponent<AudioSource>().Play();
 
+
 			Debug.Log (this.GetComponent<AudioSource> ().clip.name);
 
 			gamemanager.GetComponent<TileLevelManager> ().playersteps.Add(this.GetComponent<AudioSource> ().clip.name);
