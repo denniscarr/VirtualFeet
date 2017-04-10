@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class BreakLevelManager : MonoBehaviour {
 
-    [SerializeField] int _statuesBroken;
+    [SerializeField]
+    int _statuesBroken;
     public int statuesBroken
     {
         get { return _statuesBroken; }
@@ -13,18 +14,28 @@ public class BreakLevelManager : MonoBehaviour {
         {
             _statuesBroken = value;
 
-            Debug.Log(_statuesBroken);
+            //Debug.Log(_statuesBroken);
 
-            if (statuesBroken >= 1)
-            {
-                GameObject.Find("Pyre").GetComponent<Pyre>().Light();
-            }
+            //if (statuesBroken >= 1)
+            //{
+            //    GameObject.Find("Pyre").GetComponent<Pyre>().Light();
+            //}
         }
     }
+
+    [HideInInspector] public bool heartSpawned = false;
+
+    [SerializeField] GameObject shatterSound;
 
 
     private void Update()
     {
         //GameObject.Find("Pyre").GetComponent<Pyre>().Light();
+    }
+
+
+    public void PlayShatterSound(Vector3 position)
+    {
+        Instantiate(shatterSound, position, Quaternion.identity);
     }
 }

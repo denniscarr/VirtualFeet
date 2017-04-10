@@ -11,6 +11,8 @@ public class Breakability : MonoBehaviour {
     [SerializeField] public List<GameObject> shatterbuddies;
     [SerializeField] public List<Transform> shatterbuddyTargetPositions;
 
+    [SerializeField] GameObject heart;
+
     bool broken = false;
 
     void Awake()
@@ -171,6 +173,9 @@ public class Breakability : MonoBehaviour {
 
     void Shatter()
     {
+        // Play a shattering sound
+        GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().PlayShatterSound(transform.position);
+
         // Activate all shatterbuddies.
         foreach (GameObject shatterbuddy in shatterbuddies)
         {
@@ -187,11 +192,35 @@ public class Breakability : MonoBehaviour {
             shatterbuddy.GetComponent<Rigidbody>().AddExplosionForce(breakExplodeForce, transform.position, 10f);
         }
 
-        if (!broken)
+        if (!GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned && !broken)
         {
-            GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
-            broken = true;
+            bool shouldSpawn = false;
+
+            if (GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken == 11)
+            {
+                shouldSpawn = true;
+            }
+
+            else if (Random.value > 0.95f)
+            {
+                Debug.Log("This");
+                shouldSpawn = true;
+            }
+
+            if (shouldSpawn)
+            {
+                Instantiate(heart, transform.position, Random.rotation);
+                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned = true;
+                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
+                broken = true;
+            }
         }
+
+        //if (!broken)
+        //{
+        //    GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
+        //    broken = true;
+        //}
         
         // Deactivate self.
         gameObject.SetActive(false);

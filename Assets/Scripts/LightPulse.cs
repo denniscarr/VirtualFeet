@@ -8,6 +8,9 @@ public class LightPulse : MonoBehaviour {
     [SerializeField] float intensityMin = 1;
     [SerializeField] float intensityMax = 20;
 
+    [SerializeField] float pulseSpeed = 0.1f;
+    float time = 0.0f;
+
 	void Start ()
     {
         myLight = GetComponent<Light>();
@@ -15,6 +18,7 @@ public class LightPulse : MonoBehaviour {
 	
 	void Update ()
     {
-        myLight.intensity = MyMath.Map(Mathf.Sin(Time.time), -1, 1, intensityMin, intensityMax);
+        time += pulseSpeed;
+        myLight.intensity = MyMath.Map(Mathf.Sin(time), -1, 1, intensityMin, intensityMax);
 	}
 }
