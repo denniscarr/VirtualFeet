@@ -10,25 +10,26 @@ public class PoopGrave : Graves {
     void Start () {
 
         name = "PoopGrave";
+        this.incrementDirt = .1f;
 
-		
-	}
+    }
 
     public override void XOnCollisionEnter(Collision other)
     {
-        Debug.Log("Skull in the PoopGrave!");
-        if(other.gameObject.name == "PoopSkull")
+        //Debug.Log("Skull in the PoopGrave!");
+        if(other.gameObject.tag == "skull")
         {
-            Debug.Log("YAY POOP LOVE!");
+            //Debug.Log("YAY POOP LOVE!");
             poopSkull = true;
         }
         else
         {
             if(other.gameObject.tag == "dirt" && poopSkull == true)
             {
+                //Debug.Log("FILLMEUPBUTTERCUP");
                 FillMeUp(other);
             }
-            Debug.Log("NO. NOT POOP. BAD");
+            //Debug.Log("NO. NOT POOP. BAD");
         }
     }
 

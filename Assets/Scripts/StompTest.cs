@@ -106,7 +106,7 @@ public class StompTest : MonoBehaviour {
 				// For now, just make sure the foot is not moving more quickly than a certain speed.
 				if (currentVelocity > tipToeTooFast)
 				{
-					Debug.Log ("Too Fast!");
+					//Debug.Log ("Too Fast!");
                     tooFast = true;
                     //audioSource.Play();
 				}
