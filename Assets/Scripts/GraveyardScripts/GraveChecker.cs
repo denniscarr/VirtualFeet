@@ -18,6 +18,7 @@ public class GraveChecker : MonoBehaviour {
     public void OnTriggerEnter(Collider other)
     {
         graveCounter += 1;
+        Debug.Log(other.gameObject.name + " collided with the collider");
     }
 	
 	// Update is called once per frame
@@ -33,8 +34,9 @@ public class GraveChecker : MonoBehaviour {
         if(levelDone == true)
         {
             Debug.Log("LEVEL IS DONE!");
-            levelDone = false;
             graveCounter = 0;
+            levelDone = false;
+
         }
 
 	}
