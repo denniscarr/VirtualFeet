@@ -82,18 +82,13 @@ public class Breakability : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.isStatic && collision.relativeVelocity.magnitude >= breakForce)
+        if (collision.collider.gameObject.name != "Foot Cube" && collision.relativeVelocity.magnitude >= breakForce)
         {
-            Debug.Log("Shattering");
-            Shatter();
-        }
-
-        else if (collision.collider.gameObject.name == "Foot Cube")
-        {
-            Debug.Log("Kicked by player");
-            // Get a direction from the player's foot.
-            //Vector3 direction = collision.transform.position - transform.position;
-            GetComponent<Rigidbody>().AddExplosionForce(collision.relativeVelocity.magnitude * 1.1f, collision.transform.position, 1f, 0.1f, ForceMode.Impulse);
+            if (!broken)
+            {
+                Debug.Log("Shattering");
+                Shatter();
+            }
         }
     }
 
@@ -180,20 +175,24 @@ public class Breakability : MonoBehaviour {
         foreach (GameObject shatterbuddy in shatterbuddies)
         {
             //shatterbuddy.SetActive(true);
-            shatterbuddy.GetComponent<Rigidbody>().isKinematic = false;
-            shatterbuddy.GetComponent<Rigidbody>().useGravity = true;
-            shatterbuddy.GetComponent<Rigidbody>().detectCollisions = true;
-            shatterbuddy.GetComponent<MeshCollider>().isTrigger = false;
-            shatterbuddy.GetComponent<MeshCollider>().enabled = true;
+            if (shatterbuddy != null)
+            {
+                shatterbuddy.GetComponent<Rigidbody>().isKinematic = false;
+                shatterbuddy.GetComponent<Rigidbody>().useGravity = true;
+                shatterbuddy.GetComponent<Rigidbody>().detectCollisions = true;
+                shatterbuddy.GetComponent<MeshCollider>().isTrigger = false;
+                shatterbuddy.GetComponent<MeshCollider>().enabled = true;
 
-            shatterbuddy.transform.position = shatterbuddyTargetPositions[shatterbuddies.IndexOf(shatterbuddy)].position;
-            shatterbuddy.transform.rotation = shatterbuddyTargetPositions[shatterbuddies.IndexOf(shatterbuddy)].rotation;
+                shatterbuddy.transform.position = shatterbuddyTargetPositions[shatterbuddies.IndexOf(shatterbuddy)].position;
+                shatterbuddy.transform.rotation = shatterbuddyTargetPositions[shatterbuddies.IndexOf(shatterbuddy)].rotation;
 
-            shatterbuddy.GetComponent<Rigidbody>().AddExplosionForce(breakExplodeForce, transform.position, 10f);
+                shatterbuddy.GetComponent<Rigidbody>().AddExplosionForce(breakExplodeForce, transform.position, 10f);
+            }
         }
 
-        if (!GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned && !broken)
+        if (!GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned)
         {
+
             bool shouldSpawn = false;
 
             if (GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken == 11)
@@ -201,9 +200,8 @@ public class Breakability : MonoBehaviour {
                 shouldSpawn = true;
             }
 
-            else if (Random.value > 0.95f)
+            else if (Random.value > 0.8f)
             {
-                Debug.Log("This");
                 shouldSpawn = true;
             }
 
@@ -211,17 +209,13 @@ public class Breakability : MonoBehaviour {
             {
                 Instantiate(heart, transform.position, Random.rotation);
                 GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned = true;
-                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
-                broken = true;
             }
+
         }
 
-        //if (!broken)
-        //{
-        //    GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
-        //    broken = true;
-        //}
-        
+        GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
+        broken = true;
+
         // Deactivate self.
         gameObject.SetActive(false);
     }

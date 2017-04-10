@@ -6,7 +6,7 @@ public class HeartGoal : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Heart")
+        if (other.name.Contains("Heart"))
         {
             GameObject.Find("Pyre").GetComponent<Pyre>().Light();
         }

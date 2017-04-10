@@ -18,7 +18,8 @@ public class StompTest : MonoBehaviour {
     // USED FOR TESTING VELOCITY.
 	Vector3 previousPosition;
 	float previousAcceleration;
-	float currentVelocity;
+	public float currentVelocityMagnitude;
+    public Vector3 currentVelocity;
 	bool onFloor = false;
     public bool tooFast;
 
@@ -44,7 +45,7 @@ public class StompTest : MonoBehaviour {
 	void Start ()
 	{
 		previousPosition = Vector3.zero;
-		currentVelocity = 0.0f;
+		currentVelocityMagnitude = 0.0f;
 		previousAcceleration = 0.0f;
 
         timeSinceLastStomp = stompCooldown;
@@ -63,9 +64,10 @@ public class StompTest : MonoBehaviour {
             rb.velocity = vel;
         }
 
-		// Calcuate the current frame's acceleration
-		currentVelocity = Vector3.Distance(previousPosition, transform.position);
-        currentVelocity /= Time.deltaTime;
+        // Calcuate the current frame's acceleration
+        currentVelocity = transform.position - previousPosition;
+		currentVelocityMagnitude = Vector3.Distance(previousPosition, transform.position);
+        currentVelocityMagnitude /= Time.deltaTime;
         //Debug.Log(currentVelocity);
 
 		if (selectedMode == footstepMode.Stomp)
@@ -74,7 +76,7 @@ public class StompTest : MonoBehaviour {
 			timeSinceLastStomp += Time.deltaTime;
 
 			// See if the foot is moving quickly enough to be considered a stomp and the cooldown is over.
-			if (currentVelocity >= stompSpeed && timeSinceLastStomp >= stompCooldown) {
+			if (currentVelocityMagnitude >= stompSpeed && timeSinceLastStomp >= stompCooldown) {
 				readyForStomp = true;
                 //Debug.Log(readyForStomp);
 			} else {
@@ -85,8 +87,8 @@ public class StompTest : MonoBehaviour {
 			if (readyForStomp
                 && !alreadyStompedOnce
 				&& onFloor
-				&& currentVelocity < previousAcceleration
-				&& Mathf.Abs (currentVelocity - previousAcceleration) > stompDeceleration)
+				&& currentVelocityMagnitude < previousAcceleration
+				&& Mathf.Abs (currentVelocityMagnitude - previousAcceleration) > stompDeceleration)
 			{
 				Debug.Log ("STOMP!");
 
@@ -104,7 +106,7 @@ public class StompTest : MonoBehaviour {
 			//if (onFloor)
 			//{
 				// For now, just make sure the foot is not moving more quickly than a certain speed.
-				if (currentVelocity > tipToeTooFast)
+				if (currentVelocityMagnitude > tipToeTooFast)
 				{
 					Debug.Log ("Too Fast!");
                     tooFast = true;
@@ -118,7 +120,7 @@ public class StompTest : MonoBehaviour {
 		}
 			
 		// Save previous acceleration.
-		previousAcceleration = currentVelocity;
+		previousAcceleration = currentVelocityMagnitude;
 
 		// Save previous position
 		previousPosition = transform.position;
