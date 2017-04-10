@@ -22,7 +22,7 @@ public class TileLevelManager : MonoBehaviour {
 
 		tune = this.gameObject.GetComponent<AudioSource> ();
 
-		randomtunes = new string[6];
+		randomtunes = new string[3];
 
 		tune.clip = startAudio;
 
@@ -43,7 +43,7 @@ public class TileLevelManager : MonoBehaviour {
 	void PlaySound () {
 
 
-		if (clipToPlay < 6) {
+		if (clipToPlay < 3) {
 
 			clipToPlay = clipToPlay + 1;
 
@@ -61,8 +61,7 @@ public class TileLevelManager : MonoBehaviour {
 
 			randomtunes [i] = tune.clip.name;
 
-			Debug.Log(randomtunes[0]+ " "+ randomtunes[1]+ " "+ randomtunes[2]+ " "+ randomtunes[3]
-						+ " "+ randomtunes[4]+ " "+ randomtunes[5]);
+			Debug.Log(randomtunes[0]+ " "+ randomtunes[1]+ " "+ randomtunes[2]);
 
 			tune.Play ();
 
@@ -77,6 +76,7 @@ public class TileLevelManager : MonoBehaviour {
 
 	void Win(){
 		GameObject.Find ("Up Elevator (Conditional Trigger)").GetComponent<ElevatorScript> ().OpenDoor ();
+		Debug.Log ("win");
 		
 	}
 
@@ -84,7 +84,9 @@ public class TileLevelManager : MonoBehaviour {
 	{
 
 		if (playersteps.Count != 0) {
+			
 			if (!playersteps [i].Equals ("null")) {
+				
 				if (randomtunes [i] == playersteps [i]) {
 					Debug.Log ("success " + i);
 					i = i + 1;
@@ -94,7 +96,7 @@ public class TileLevelManager : MonoBehaviour {
 			}
 		}
 		
-		if (i == 6) {
+		if (i == 3) {
 			Win ();
 		}
 	}

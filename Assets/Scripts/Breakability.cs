@@ -8,8 +8,10 @@ public class Breakability : MonoBehaviour {
     [SerializeField] float breakExplodeForce = 100f;
 
     // Copies of the individual pieces of the mesh which will fly around when the object is shattered.
-    [SerializeField] List<GameObject> shatterbuddies;
-    [SerializeField] List<Transform> shatterbuddyTargetPositions;
+    [SerializeField] public List<GameObject> shatterbuddies;
+    [SerializeField] public List<Transform> shatterbuddyTargetPositions;
+
+    [SerializeField] GameObject heart;
 
     bool broken = false;
 
@@ -152,7 +154,7 @@ public class Breakability : MonoBehaviour {
             shatterBuddy.GetComponent<Rigidbody>().useGravity = false;
             shatterBuddy.GetComponent<MeshCollider>().inflateMesh = true;
             shatterBuddy.GetComponent<MeshCollider>().convex = true;
-            shatterBuddy.GetComponent<MeshCollider>().skinWidth = 0.01f;
+            shatterBuddy.GetComponent<MeshCollider>().skinWidth = 0.017f;
             shatterBuddy.GetComponent<MeshCollider>().enabled = true;
             shatterBuddy.GetComponent<MeshCollider>().isTrigger = true;
             shatterBuddy.GetComponent<MeshCollider>().sharedMesh = shatterBuddy.GetComponent<MeshFilter>().sharedMesh;
@@ -171,6 +173,9 @@ public class Breakability : MonoBehaviour {
 
     void Shatter()
     {
+        // Play a shattering sound
+        GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().PlayShatterSound(transform.position);
+
         // Activate all shatterbuddies.
         foreach (GameObject shatterbuddy in shatterbuddies)
         {
@@ -187,11 +192,35 @@ public class Breakability : MonoBehaviour {
             shatterbuddy.GetComponent<Rigidbody>().AddExplosionForce(breakExplodeForce, transform.position, 10f);
         }
 
-        if (!broken)
+        if (!GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned && !broken)
         {
-            GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
-            broken = true;
+            bool shouldSpawn = false;
+
+            if (GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken == 11)
+            {
+                shouldSpawn = true;
+            }
+
+            else if (Random.value > 0.95f)
+            {
+                Debug.Log("This");
+                shouldSpawn = true;
+            }
+
+            if (shouldSpawn)
+            {
+                Instantiate(heart, transform.position, Random.rotation);
+                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned = true;
+                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
+                broken = true;
+            }
         }
+
+        //if (!broken)
+        //{
+        //    GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
+        //    broken = true;
+        //}
         
         // Deactivate self.
         gameObject.SetActive(false);
