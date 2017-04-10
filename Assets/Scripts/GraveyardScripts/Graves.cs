@@ -5,7 +5,7 @@ using UnityEngine;
 public class Graves : MonoBehaviour {
 
     protected string name = "Graves";
-    protected float incrementDirt = .1f;
+    protected float incrementDirt;
 
     public void OnCollisionEnter(Collision other)
     {
@@ -21,6 +21,7 @@ public class Graves : MonoBehaviour {
     {
         Destroy(other.gameObject);
         transform.position += new Vector3(0, incrementDirt, 0);
+        this.gameObject.layer = 9;
         if (transform.position.y > 0)
         {
             incrementDirt = 0;

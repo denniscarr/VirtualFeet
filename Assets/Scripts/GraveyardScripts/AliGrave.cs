@@ -10,24 +10,26 @@ public class AliGrave : Graves {
 	void Start () {
 
         name = "AliGrave";
-		
-	}
+        this.incrementDirt = .1f;
+
+    }
 
     public override void XOnCollisionEnter(Collision other)
     {
-        Debug.Log("Skull in the AliGrave!");
-        if (other.gameObject.name == "AliSkull")
+        //Debug.Log("Skull in the AliGrave!");
+        if (other.gameObject.tag == "skull")
         {
             aliSkull = true;
-            Debug.Log("GOOD YAY! ALI!");
+            //Debug.Log("GOOD YAY! ALI!");
         }
         else
         {
             if (other.gameObject.tag == "dirt" && aliSkull == true)
             {
+                //Debug.Log("FILLMEUPBUTTERCUP");
                 FillMeUp(other);
             }
-            Debug.Log("NO BAD! NOT ALI");
+            //Debug.Log("NO BAD! NOT ALI");
         }
     }
 
