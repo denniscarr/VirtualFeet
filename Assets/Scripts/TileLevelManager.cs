@@ -5,15 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class TileLevelManager : MonoBehaviour {
 
-	public List<AudioClip> tunes;
+	public List<GameObject> tiles;
 	public List<string> playersteps = new List<string> ();
 	public GameObject start;
 	AudioSource tune;
 	int clipToPlay = 0;
 	[SerializeField] string[] randomtunes;
-	int i;
+	int i,j;
 	public AudioClip lose;
 	public AudioClip startAudio;
+	private Color originalColor;
+	float timeToWait;
+
 
 	// Use this for initialization
 	void Start () {
@@ -32,18 +35,19 @@ public class TileLevelManager : MonoBehaviour {
 
 		i = 0;
 
-
-
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+			
+
 
 			StepCheck ();
 	}
 
 	void PlaySound () {
+
 
 
 		if (clipToPlay < 3) {
@@ -52,9 +56,9 @@ public class TileLevelManager : MonoBehaviour {
 
 			int j = 0;
 			
-			tunes[j] = tunes [Random.Range (0, tunes.Count)];
+			tiles[j] = tiles [Random.Range (0, tiles.Count)];
 			
-			tune.clip = tunes [j];
+			tune.clip = tiles [j].GetComponent<AudioSource>().clip;
 
 			float timeToWait = tune.clip.length;
 
@@ -68,7 +72,17 @@ public class TileLevelManager : MonoBehaviour {
 
 			tune.Play ();
 
-			Invoke ("PlaySound", timeToWait);
+			originalColor = tiles [j].GetComponent<SpriteRenderer> ().color;
+
+			tiles [j].GetComponent<SpriteRenderer> ().color = Color.yellow;
+
+			StartCoroutine (Wait());
+
+
+
+
+
+
 		}
 	}
 
@@ -104,6 +118,18 @@ public class TileLevelManager : MonoBehaviour {
 		if (i == 3) {
 			Win ();
 		}
+	}
+
+	IEnumerator Wait(){
+		
+
+		yield return new WaitForSeconds(1);
+
+		tiles [j].GetComponent<SpriteRenderer> ().color = originalColor;
+
+		Invoke ("PlaySound", timeToWait);
+
+
 	}
 
 }
