@@ -6,12 +6,17 @@ public class LineRender : MonoBehaviour {
 
 	public LineRenderer linerenderer;
 	bool isdrawing;
-	public Transform playerPosition;
 	public GameObject dot1;
 	public GameObject dot2;
 	public GameObject dot3;
 	public GameObject dot4;
 	public GameObject dot5;
+	private Vector3 startPosition;
+	bool isdot1;
+	bool isdot2;
+	bool isdot3;
+	bool isdot4;
+	bool isdot5;
 
 
 
@@ -19,7 +24,12 @@ public class LineRender : MonoBehaviour {
 	void Start () {
 
 		linerenderer = GetComponent<LineRenderer> ();
+
 		isdrawing = false;
+
+		startPosition = transform.position;
+
+		isdot1 = isdot2 = isdot3 = isdot4 = isdot5 = false;
 
 	}
 	
@@ -27,50 +37,65 @@ public class LineRender : MonoBehaviour {
 	void Update () {
 
 		if (isdrawing == true) {
-			linerenderer.SetPosition (0, this.gameObject.transform.position);
+
+			linerenderer.SetPosition (0, new Vector3(0,0,0));
+
 			linerenderer.startWidth = 0.05f;
 
-			ConnectCheck ();
+			linerenderer.SetPosition (1, new Vector3(100f,100f,100f);
+				
 
 		}
 	}
 
 	void OnTriggerEnter(Collider col){
 		
-		if (col.gameObject.tag == "Player") {
-			linerenderer.enabled = true;
-			isdrawing = true;
+		if (col.gameObject.tag == "Dot") {
 
-			playerPosition = col.gameObject.transform;
+			isdrawing = !isdrawing;
 
-		}
+			Debug.Log (isdrawing);
 
-	}
+//			if (isdrawing == true) {
+//
+//				linerenderer.SetPosition (1, col.gameObject.transform.position);
+//
+//				//isdrawing = false;
+//			}
+//
+//			if (isdrawing == false) {
+//
+//				isdrawing = true;
+//
+//				startPosition = col.gameObject.transform.position;
+//			}
 
-	void ConnectCheck(){
-		
-		if (playerPosition.position == dot1.transform.position) {
-			linerenderer.SetPosition (1, dot1.transform.position);
-			isdrawing = false;
-		}
-		if (playerPosition.position == dot2.transform.position) {
-			linerenderer.SetPosition (1, dot2.transform.position);
-			isdrawing = false;
-		}
-		if (playerPosition.position == dot3.transform.position) {
-			linerenderer.SetPosition (1, dot3.transform.position);
-			isdrawing = false;
-		}
-		if (playerPosition.position == dot4.transform.position) {
-			linerenderer.SetPosition (1, dot4.transform.position);
-			isdrawing = false;
-		}
-		if (playerPosition.position == dot5.transform.position) {
-			linerenderer.SetPosition (1, dot5.transform.position);
-			isdrawing = false;
+
 		}
 
-		else linerenderer.SetPosition (1, playerPosition.position);
+//		if (col.gameObject.name == "Dot2") {
+//
+//			isdot2 = true;
+//
+//			if (isdrawing == true) {
+//
+//				linerenderer.SetPosition (1, col.gameObject.transform.position);
+//
+//				//isdrawing = false;
+//			}
+//
+//			if (isdrawing == false) {
+//
+//				isdrawing = true;
+//
+//				startPosition = col.gameObject.transform.position;
+//			}
+				
+
+//		}
+
+
+
 	}
 
 
