@@ -6,12 +6,17 @@ public class GraveChecker : MonoBehaviour {
 
     public static float graveCounter;
     public bool levelDone;
+    GameObject pyreObj;
+    Pyre pyreScript;
 
 	// Use this for initialization
 	void Start () {
 
         graveCounter = 0;
         levelDone = false;
+
+        pyreObj = GameObject.Find("Pyre");
+        pyreScript = pyreObj.GetComponent<Pyre>();
 		
 	}
 
@@ -36,6 +41,7 @@ public class GraveChecker : MonoBehaviour {
             Debug.Log("LEVEL IS DONE!");
             graveCounter = 0;
             levelDone = false;
+            pyreScript.Light();
 
         }
 
