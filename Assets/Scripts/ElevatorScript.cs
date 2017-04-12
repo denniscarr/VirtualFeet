@@ -32,9 +32,9 @@ public class ElevatorScript : MonoBehaviour {
         {
             if (other.gameObject.name == "Foot Cube")
             {
-                Debug.Log("Test working");
-                isElevatorOpening = true;
-                isElevatorClosing = false;
+                //Debug.Log("Test working");
+                //isElevatorOpening = true;
+                //isElevatorClosing = false;
             }
         }
 

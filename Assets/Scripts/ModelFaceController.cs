@@ -99,7 +99,7 @@ public class ModelFaceController : MonoBehaviour {
         if (isSleeping == true)
         {
             //isAwake = false;
-            pyreScript.Light();
+            StartCoroutine(WaitToLight(1));
             //Debug.Log("breatheValue = " + breathValue);
             //Debug.Log("breathOut = " + breathOut);
             if (breathOut == false)
@@ -153,5 +153,11 @@ public class ModelFaceController : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         safeToStart = true;
+    }
+
+    IEnumerator WaitToLight(float time)
+    {
+        yield return new WaitForSeconds(time);
+        pyreScript.Light();
     }
 }
