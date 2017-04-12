@@ -31,6 +31,9 @@ public class TileLevelManager : MonoBehaviour {
 		Invoke ("PlaySound", 1.5f);
 
 		i = 0;
+
+
+
 		
 	}
 	
@@ -75,7 +78,9 @@ public class TileLevelManager : MonoBehaviour {
 	}
 
 	void Win(){
-		GameObject.Find ("Up Elevator (Conditional Trigger)").GetComponent<ElevatorScript> ().OpenDoor ();
+
+		GameObject.Find ("Pyre").SendMessage ("Light");
+
 		Debug.Log ("win");
 		
 	}

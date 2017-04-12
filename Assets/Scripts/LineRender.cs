@@ -42,7 +42,7 @@ public class LineRender : MonoBehaviour {
 
 			linerenderer.startWidth = 0.05f;
 
-			linerenderer.SetPosition (1, new Vector3(100f,100f,100f);
+			linerenderer.SetPosition (1, new Vector3(100f,100f,100f));
 				
 
 		}
