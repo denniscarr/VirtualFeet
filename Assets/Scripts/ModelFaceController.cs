@@ -28,6 +28,7 @@ public class ModelFaceController : MonoBehaviour {
 
     public Transform target;
     public GameObject head;
+    public GameObject animationHead;
 
     AudioSource audioSource;
     public AudioClip snore;
@@ -54,8 +55,8 @@ public class ModelFaceController : MonoBehaviour {
 	void Update () {
 
 
-        Debug.Log("eyeValue = " + eyeValue);
-        Debug.Log("transformValue = " + transformValue);
+        //Debug.Log("eyeValue = " + eyeValue);
+        //Debug.Log("transformValue = " + transformValue);
 
         //Debug.Log("isSleeping = " + isSleeping);
 
@@ -80,6 +81,7 @@ public class ModelFaceController : MonoBehaviour {
             m3D.SetBlendshapeValue("EyesIrisSize", transformValue);
             m3D.SetBlendshapeValue("FaceCenterDepth", transformValue);
             //m3D.SetBlendshapeValue("FHMHellFiend", transformValue);
+            //animationHead.GetComponent<Animator>().SetBool("tooFast", true);
             head.transform.LookAt(target);
         }
         if (isSleeping == true)
