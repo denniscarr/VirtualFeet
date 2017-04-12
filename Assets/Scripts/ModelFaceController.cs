@@ -33,6 +33,11 @@ public class ModelFaceController : MonoBehaviour {
     AudioSource audioSource;
     public AudioClip snore;
 
+    GameObject pyreObj;
+    Pyre pyreScript;
+
+    public Transform sleepLookTarget;
+
 
 
 	// Use this for initialization
@@ -47,6 +52,8 @@ public class ModelFaceController : MonoBehaviour {
         breathOut = false;
         audioSource = GetComponent<AudioSource>();
         transformValue = 0;
+        pyreObj = GameObject.Find("Pyre");
+        pyreScript = pyreObj.GetComponent<Pyre>();
 
 		
 	}
@@ -66,11 +73,17 @@ public class ModelFaceController : MonoBehaviour {
             if (stompTest.tooFast == true)
             {
                 isAwake = true;
+                isSleeping = false;
+            }
+            else if(stompTest.tooFast == false)
+            {
+                isSleeping = true;
+                isAwake = false;
             }
         }
         if (isAwake == true)
         {
-            isSleeping = false;
+            //isSleeping = false;
             eyeValue = eyeValue -= Time.deltaTime * eyeSpeed;
             m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
 
@@ -83,12 +96,16 @@ public class ModelFaceController : MonoBehaviour {
             //m3D.SetBlendshapeValue("FHMHellFiend", transformValue);
             //animationHead.GetComponent<Animator>().SetBool("tooFast", true);
             head.transform.LookAt(target);
+            pyreScript.unLight();
         }
         if (isSleeping == true)
         {
+            //isAwake = false;
+            StartCoroutine(WaitToLight(1));
+            head.transform.LookAt(sleepLookTarget);
             //Debug.Log("breatheValue = " + breathValue);
             //Debug.Log("breathOut = " + breathOut);
-            if(breathOut == false)
+            if (breathOut == false)
             {
                 if (breathValue + Time.deltaTime < headBobValue)
                 {
@@ -139,5 +156,11 @@ public class ModelFaceController : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         safeToStart = true;
+    }
+
+    IEnumerator WaitToLight(float time)
+    {
+        yield return new WaitForSeconds(time);
+        pyreScript.Light();
     }
 }

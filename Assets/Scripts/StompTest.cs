@@ -115,6 +115,7 @@ public class StompTest : MonoBehaviour {
             else
             {
                 tooFast = false;
+                Debug.Log("Tip toe through the tulips");
             }
 			//}
 		}
