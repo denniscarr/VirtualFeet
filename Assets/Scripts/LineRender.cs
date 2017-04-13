@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LineRender : MonoBehaviour {
 
-	public LineRenderer linerenderer;
+	GameObject lineRender;
 	bool isdrawing;
 	public GameObject dot1;
 	public GameObject dot2;
@@ -23,7 +23,7 @@ public class LineRender : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		linerenderer = GetComponent<LineRenderer> ();
+		lineRender = Resources.Load<GameObject> ("LineRender");
 
 		isdrawing = false;
 
@@ -36,16 +36,6 @@ public class LineRender : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (isdrawing == true) {
-
-			linerenderer.SetPosition (0, new Vector3(0,0,0));
-
-			linerenderer.startWidth = 0.05f;
-
-			linerenderer.SetPosition (1, new Vector3(100f,100f,100f));
-				
-
-		}
 	}
 
 	void OnTriggerEnter(Collider col){
@@ -96,6 +86,12 @@ public class LineRender : MonoBehaviour {
 
 
 
+	}
+
+	void DrawALine(){
+		
+		GameObject newPlatform = Instantiate (lineRender, position, Quaternion.identity) as GameObject;
+	
 	}
 
 
