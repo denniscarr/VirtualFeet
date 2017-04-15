@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class LineRender : MonoBehaviour {
 
-	GameObject lineRender;
-	bool isdrawing;
+	public List<GameObject> lines = new List<GameObject>();
+	public GameObject lineRender;
+
 	public GameObject dot1;
 	public GameObject dot2;
 	public GameObject dot3;
 	public GameObject dot4;
 	public GameObject dot5;
 	private Vector3 startPosition;
-	bool isdot1;
-	bool isdot2;
-	bool isdot3;
-	bool isdot4;
-	bool isdot5;
+	private Vector3 endPosition;
+	public string startName;
+	public string endName;
 
+	bool L1,L2,L3,L4,L5;
+	bool startaline;
+	bool isdrawing;
+	int i;
 
 
 	// Use this for initialization
@@ -27,14 +30,43 @@ public class LineRender : MonoBehaviour {
 
 		isdrawing = false;
 
+		startaline = false;
+
 		startPosition = transform.position;
 
-		isdot1 = isdot2 = isdot3 = isdot4 = isdot5 = false;
+		L1 = L2 = L3 = L4 = L5 = false;
+
+		i = 0; 
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+
+			if (startaline == true) {
+			
+				DrawALine ();
+			}
+
+
+
+		if (isdrawing == true) {
+
+			lines[i].GetComponent<LineRenderer> ().SetPosition (1, transform.position);
+		}
+
+		if (isdrawing == false) {
+
+			lines[i].GetComponent<LineRenderer> ().SetPosition (1, endPosition);
+
+			LineCheck ();
+		}
+
+
+
+
+		
 
 	}
 
@@ -44,55 +76,100 @@ public class LineRender : MonoBehaviour {
 
 			isdrawing = !isdrawing;
 
-			Debug.Log (isdrawing);
 
-//			if (isdrawing == true) {
-//
-//				linerenderer.SetPosition (1, col.gameObject.transform.position);
-//
-//				//isdrawing = false;
-//			}
-//
-//			if (isdrawing == false) {
-//
-//				isdrawing = true;
-//
-//				startPosition = col.gameObject.transform.position;
-//			}
+			if (isdrawing == true) {
+
+				startaline = true;
+				startName = col.gameObject.name;
+				startPosition = col.gameObject.transform.position;
+
+			}
+
+			if (isdrawing == false) {
+
+				endPosition = col.gameObject.transform.position;
+				endName = col.gameObject.name;
+
+			}
 
 
 		}
-
-//		if (col.gameObject.name == "Dot2") {
-//
-//			isdot2 = true;
-//
-//			if (isdrawing == true) {
-//
-//				linerenderer.SetPosition (1, col.gameObject.transform.position);
-//
-//				//isdrawing = false;
-//			}
-//
-//			if (isdrawing == false) {
-//
-//				isdrawing = true;
-//
-//				startPosition = col.gameObject.transform.position;
-//			}
-				
-
-//		}
-
-
-
 	}
 
 	void DrawALine(){
-		
-		GameObject newPlatform = Instantiate (lineRender, position, Quaternion.identity) as GameObject;
+
+		GameObject newlineRender = Instantiate (lineRender, startPosition, Quaternion.identity) as GameObject;
+
+		lines.Add (newlineRender);
+
+		lines[i].GetComponent<LineRenderer> ().SetPosition (0, startPosition);
+		lines[i].GetComponent<LineRenderer> ().startWidth = 0.1f;
+
+		startaline = false;
 	
 	}
 
+	void LineCheck(){
+	
+		if (startName == "Dot1") {
+			if (endName == "Dot4" || endName == "Dot5") {
+				L1 = true;
+				i = i + 1;
+			} 
+			else{
+				Destroy (lines [i]);
+				lines.Remove (lines [i].gameObject);
+			}
+		}
+
+		if (startName == "Dot2") {
+			if (endName == "Dot3" || endName == "Dot4") {
+				L2 = true;
+				i = i + 1;
+			} 
+			else{
+				Destroy (lines [i]);
+				lines.Remove (lines [i].gameObject);
+			}
+		}
+
+		if (startName == "Dot3") {
+			if (endName == "Dot2" || endName == "Dot5") {
+				L3 = true;
+				i = i + 1;
+			} 
+			else{
+				Destroy (lines [i]);
+				lines.Remove (lines [i].gameObject);
+			}
+		}
+
+		if (startName == "Dot4") {
+			if (endName == "Dot1" || endName == "Dot2") {
+				L4 = true;
+				i = i + 1;
+			} 
+			else{
+				Destroy (lines [i]);
+				lines.Remove (lines [i].gameObject);
+			}
+		}
+
+		if (startName == "Dot5") {
+			if (endName == "Dot1" || endName == "Dot3") {
+				L5 = true;
+				i = i + 1;
+			} 
+			else{
+				Destroy (lines [i]);
+				lines.Remove (lines [i].gameObject);
+			}
+		}
+
+		if (L1 && L2 && L3 && L4 && L5 == true) {
+			
+			GameObject.Find ("Pyre").SendMessage ("Light");
+		}
+	}
 
 }
