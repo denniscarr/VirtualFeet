@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MORPH3D;
-using MORPH3D.FOUNDATIONS;
+//using MORPH3D;
+//using MORPH3D.FOUNDATIONS;
 
 public class ModelFaceController : MonoBehaviour {
 
