@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using MORPH3D;
-//using MORPH3D.FOUNDATIONS;
+using MORPH3D;
+using MORPH3D.FOUNDATIONS;
 
 public class ModelFaceController : MonoBehaviour {
 
@@ -28,15 +28,12 @@ public class ModelFaceController : MonoBehaviour {
 
     public Transform target;
     public GameObject head;
-    public GameObject animationHead;
 
     AudioSource audioSource;
     public AudioClip snore;
 
     GameObject pyreObj;
     Pyre pyreScript;
-
-    public Transform sleepLookTarget;
 
 
 
@@ -75,11 +72,6 @@ public class ModelFaceController : MonoBehaviour {
                 isAwake = true;
                 isSleeping = false;
             }
-            else if(stompTest.tooFast == false)
-            {
-                isSleeping = true;
-                isAwake = false;
-            }
         }
         if (isAwake == true)
         {
@@ -102,7 +94,6 @@ public class ModelFaceController : MonoBehaviour {
         {
             //isAwake = false;
             StartCoroutine(WaitToLight(1));
-            head.transform.LookAt(sleepLookTarget);
             //Debug.Log("breatheValue = " + breathValue);
             //Debug.Log("breathOut = " + breathOut);
             if (breathOut == false)
