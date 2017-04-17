@@ -36,6 +36,8 @@ public class ModelFaceController : MonoBehaviour {
     GameObject pyreObj;
     Pyre pyreScript;
 
+    public Transform sleepLookTarget;
+
 
 
 	// Use this for initialization
@@ -100,6 +102,7 @@ public class ModelFaceController : MonoBehaviour {
         {
             //isAwake = false;
             StartCoroutine(WaitToLight(1));
+            head.transform.LookAt(sleepLookTarget);
             //Debug.Log("breatheValue = " + breathValue);
             //Debug.Log("breathOut = " + breathOut);
             if (breathOut == false)
