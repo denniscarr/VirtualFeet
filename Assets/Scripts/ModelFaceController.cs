@@ -35,6 +35,8 @@ public class ModelFaceController : MonoBehaviour {
     GameObject pyreObj;
     Pyre pyreScript;
 
+    MoveFaceTowardsPlayer moveFace;
+
 
 
 	// Use this for initialization
@@ -51,6 +53,8 @@ public class ModelFaceController : MonoBehaviour {
         transformValue = 0;
         pyreObj = GameObject.Find("Pyre");
         pyreScript = pyreObj.GetComponent<Pyre>();
+
+        moveFace = GameObject.FindGameObjectWithTag("skull").GetComponent<MoveFaceTowardsPlayer>();
 
 		
 	}
@@ -89,6 +93,7 @@ public class ModelFaceController : MonoBehaviour {
             //animationHead.GetComponent<Animator>().SetBool("tooFast", true);
             head.transform.LookAt(target);
             pyreScript.unLight();
+            moveFace.enabled = true;
         }
         if (isSleeping == true)
         {
