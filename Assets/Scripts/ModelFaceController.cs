@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using MORPH3D;
-//using MORPH3D.FOUNDATIONS;
+using MORPH3D;
+using MORPH3D.FOUNDATIONS;
 
 public class ModelFaceController : MonoBehaviour {
 
@@ -28,7 +28,6 @@ public class ModelFaceController : MonoBehaviour {
 
     public Transform target;
     public GameObject head;
-    public GameObject animationHead;
 
     AudioSource audioSource;
     public AudioClip snore;
@@ -36,7 +35,7 @@ public class ModelFaceController : MonoBehaviour {
     GameObject pyreObj;
     Pyre pyreScript;
 
-    public Transform sleepLookTarget;
+    MoveFaceTowardsPlayer moveFace;
 
 
 
@@ -54,6 +53,8 @@ public class ModelFaceController : MonoBehaviour {
         transformValue = 0;
         pyreObj = GameObject.Find("Pyre");
         pyreScript = pyreObj.GetComponent<Pyre>();
+
+        moveFace = GameObject.FindGameObjectWithTag("skull").GetComponent<MoveFaceTowardsPlayer>();
 
 		
 	}
@@ -75,11 +76,6 @@ public class ModelFaceController : MonoBehaviour {
                 isAwake = true;
                 isSleeping = false;
             }
-            else if(stompTest.tooFast == false)
-            {
-                isSleeping = true;
-                isAwake = false;
-            }
         }
         if (isAwake == true)
         {
@@ -97,12 +93,12 @@ public class ModelFaceController : MonoBehaviour {
             //animationHead.GetComponent<Animator>().SetBool("tooFast", true);
             head.transform.LookAt(target);
             pyreScript.unLight();
+            moveFace.enabled = true;
         }
         if (isSleeping == true)
         {
             //isAwake = false;
             StartCoroutine(WaitToLight(1));
-            head.transform.LookAt(sleepLookTarget);
             //Debug.Log("breatheValue = " + breathValue);
             //Debug.Log("breathOut = " + breathOut);
             if (breathOut == false)
@@ -112,8 +108,6 @@ public class ModelFaceController : MonoBehaviour {
                     breathValue += Time.deltaTime * headBobSpeed;
                     faceChangeValue += Time.deltaTime * faceChangeSpeed;
                     //Debug.Log("Breathing Increasing to " + breathValue);
-                    audioSource.clip = snore;
-                    audioSource.Play();
                 }
                 else
                 {

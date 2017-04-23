@@ -112,21 +112,39 @@ public class LineRender : MonoBehaviour {
 	void LineCheck(){
 	
 		if (startName == "Dot1") {
+
 			if (endName == "Dot4" || endName == "Dot5") {
-				L1 = true;
 				i = i + 1;
-			} 
-			else{
+
+				if (endName == "Dot4") {
+					L2 = true;
+				} 
+				if (endName == "Dot5" ) {
+					L1 = true;
+				} 
+
+			}
+
+			else {
 				Destroy (lines [i]);
 				lines.Remove (lines [i].gameObject);
 			}
+
 		}
 
 		if (startName == "Dot2") {
+			
 			if (endName == "Dot3" || endName == "Dot4") {
-				L2 = true;
 				i = i + 1;
-			} 
+
+				if (endName == "Dot3") {
+					L3 = true;
+				}
+					
+				if (endName == "Dot4") {
+					L4 = true;
+				} 
+			}
 			else{
 				Destroy (lines [i]);
 				lines.Remove (lines [i].gameObject);
@@ -134,10 +152,19 @@ public class LineRender : MonoBehaviour {
 		}
 
 		if (startName == "Dot3") {
+
 			if (endName == "Dot2" || endName == "Dot5") {
-				L3 = true;
 				i = i + 1;
-			} 
+
+				if (endName == "Dot2") {
+					L3 = true;
+				} 
+
+				if (endName == "Dot5") {
+					L5 = true;
+				} 
+			}
+
 			else{
 				Destroy (lines [i]);
 				lines.Remove (lines [i].gameObject);
@@ -145,10 +172,17 @@ public class LineRender : MonoBehaviour {
 		}
 
 		if (startName == "Dot4") {
+
 			if (endName == "Dot1" || endName == "Dot2") {
-				L4 = true;
 				i = i + 1;
-			} 
+
+				if (endName == "Dot1") {
+					L2 = true;
+				} 
+				if (endName == "Dot2") {
+					L4 = true;
+				} 
+			}
 			else{
 				Destroy (lines [i]);
 				lines.Remove (lines [i].gameObject);
@@ -156,10 +190,18 @@ public class LineRender : MonoBehaviour {
 		}
 
 		if (startName == "Dot5") {
+
 			if (endName == "Dot1" || endName == "Dot3") {
-				L5 = true;
 				i = i + 1;
-			} 
+				if (endName == "Dot1") {
+					L1 = true;
+				} 
+
+				if (endName == "Dot3") {
+					L5 = true;
+				} 
+
+			}
 			else{
 				Destroy (lines [i]);
 				lines.Remove (lines [i].gameObject);
@@ -167,6 +209,8 @@ public class LineRender : MonoBehaviour {
 		}
 
 		if (L1 && L2 && L3 && L4 && L5 == true) {
+
+			Debug.Log ("fire");
 			
 			GameObject.Find ("Pyre").SendMessage ("Light");
 		}

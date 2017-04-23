@@ -10,16 +10,25 @@ public class FootCalibrator : MonoBehaviour {
 
     private void Start()
     {
-        Calibrate();
+        //Invoke("Calibrate", 3f);
+    }
+
+
+    void Update()
+    {
+        if (transform.localPosition.y < -0.4f)
+        {
+            Calibrate();
+        }
     }
 
 
     void Calibrate()
     {
-        // Set rotation
-        transform.rotation = Quaternion.Euler(targetRotation);
-
-        // Set height
+        // Set world Y (bring to floor level)
         transform.position = new Vector3(transform.position.x, targetHeight, transform.position.z);
+
+        // Set rotation
+        //transform.rotation = Quaternion.Euler(targetRotation);
     }
 }
