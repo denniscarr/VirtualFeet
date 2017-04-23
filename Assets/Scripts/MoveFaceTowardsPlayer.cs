@@ -19,8 +19,8 @@ public class MoveFaceTowardsPlayer : MonoBehaviour {
         float step = speed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
-		
-	}
+        StartCoroutine(WaitToChange(1.5f));
+    }
 
     IEnumerator WaitToChange(float time)
     {
