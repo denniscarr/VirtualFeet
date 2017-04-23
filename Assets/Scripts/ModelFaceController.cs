@@ -108,8 +108,6 @@ public class ModelFaceController : MonoBehaviour {
                     breathValue += Time.deltaTime * headBobSpeed;
                     faceChangeValue += Time.deltaTime * faceChangeSpeed;
                     //Debug.Log("Breathing Increasing to " + breathValue);
-                    audioSource.clip = snore;
-                    audioSource.Play();
                 }
                 else
                 {
