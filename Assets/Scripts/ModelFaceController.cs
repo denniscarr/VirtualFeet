@@ -68,7 +68,7 @@ public class ModelFaceController : MonoBehaviour {
         //Debug.Log("eyeValue = " + eyeValue);
         //Debug.Log("transformValue = " + transformValue);
 
-        Debug.Log("isSleeping = " + isSleeping);
+        //Debug.Log("isSleeping = " + isSleeping);
 
         StartCoroutine(WaitToStart(2));
         if (safeToStart == true)
@@ -82,7 +82,7 @@ public class ModelFaceController : MonoBehaviour {
             {
                 Debug.Log("SLOW AGAIN");
                 timePassed += Time.deltaTime;
-                Debug.Log(timePassed);
+                //Debug.Log(timePassed);
                 if (timePassed > 4)
                 {
                     isAwake = false;
@@ -118,6 +118,7 @@ public class ModelFaceController : MonoBehaviour {
             isAwake = false;
             StartCoroutine(WaitToLight(1));
             moveFace.enabled = false;
+            moveFace.playing = false;
             transformValue = 0;
             eyeValue = 100;
             m3D.SetBlendshapeValue("eCTRLAngry", transformValue);
