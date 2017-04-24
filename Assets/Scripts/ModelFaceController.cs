@@ -39,6 +39,8 @@ public class ModelFaceController : MonoBehaviour {
 
     float timePassed = 0;
 
+    public bool warning = false;
+
 
 
 	// Use this for initialization
@@ -89,14 +91,22 @@ public class ModelFaceController : MonoBehaviour {
                     isSleeping = true;
                 }
             }
-
-            if (stompTest.currentVelocityMagnitude > 0.2f && stompTest.currentVelocityMagnitude < 3.5f)
+            if (warning == false)
             {
-                Debug.Log("ALMOST TOO FAST");
+                //if (stompTest.currentVelocityMagnitude > 0.2f && stompTest.currentVelocityMagnitude < 2)
+                //{
+                //    warning = false;
+                //    Debug.Log("ALMOST TOO FAST");
+                //    audioSource.clip = snore;
+                //    audioSource.Play();
+                //    warning = true;
+                //}
             }
+
         }
         if (isAwake == true)
         {
+            warning = false;
             isSleeping = false;
             eyeValue = eyeValue -= Time.deltaTime * eyeSpeed;
             m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
