@@ -9,6 +9,7 @@ public class ImpaleScript : MonoBehaviour {
     float impaledCount;
     public float speed;
     public float ceilingTrigger;
+    float WARNING_TRIGGER = 0.135f;
 
     GameObject lightSource;
     GameObject room;
@@ -61,6 +62,12 @@ public class ImpaleScript : MonoBehaviour {
             audioSource.PlayOneShot(spikeEngine);
             ceiling.transform.Translate(Vector3.forward * speed * Time.deltaTime);
             //StartCoroutine(WaitTillDeath(6));
+        }
+        float warning = Vector3.Distance(transform.position, GameObject.Find("Foot Cube").transform.position);
+        //Debug.Log("Warning Distance = " + warning + "and WARNING_TRIGGER IS " + WARNING_TRIGGER);
+        if (warning < WARNING_TRIGGER)
+        {
+            Debug.Log("WARNING, TOO CLOSE");
         }
 		
 	}
