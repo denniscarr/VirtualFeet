@@ -30,7 +30,7 @@ public class MoveFaceTowardsPlayer : MonoBehaviour {
             audio.clip = suckingIn;
             audio.Play();
         }
-        StartCoroutine(WaitToChange(1.5f));
+        //StartCoroutine(WaitToChange(1.5f));
 
     }
 
