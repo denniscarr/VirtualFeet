@@ -17,7 +17,7 @@ public class StompTest : MonoBehaviour {
 
     // USED FOR TESTING VELOCITY.
 	Vector3 previousPosition;
-	float previousAcceleration;
+	public float previousAcceleration;
 	public float currentVelocityMagnitude;
     public Vector3 currentVelocity;
 	bool onFloor = false;
