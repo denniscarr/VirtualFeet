@@ -76,6 +76,10 @@ public class ModelFaceController : MonoBehaviour {
                 isAwake = true;
                 isSleeping = false;
             }
+            else if(stompTest.currentVelocityMagnitude > 0.2f && stompTest.currentVelocityMagnitude < 3.5f)
+            {
+                Debug.Log("ALMOST TOO FAST");
+            }
         }
         if (isAwake == true)
         {
@@ -99,6 +103,7 @@ public class ModelFaceController : MonoBehaviour {
         {
             //isAwake = false;
             StartCoroutine(WaitToLight(1));
+            moveFace.enabled = false;
             //Debug.Log("breatheValue = " + breathValue);
             //Debug.Log("breathOut = " + breathOut);
             if (breathOut == false)

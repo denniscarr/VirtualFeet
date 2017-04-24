@@ -22,7 +22,7 @@ public class MoveFaceTowardsPlayer : MonoBehaviour {
 
         float step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
 
         if (playing == false)
         {
