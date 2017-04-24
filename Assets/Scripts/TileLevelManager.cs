@@ -6,20 +6,26 @@ using UnityEngine.SceneManagement;
 public class TileLevelManager : MonoBehaviour {
 
 	public List<GameObject> tiles;
+	public List<GameObject> tilesRow1;
+	public List<GameObject> tilesRow2;
+	public List<GameObject> tilesRow3;
 	public List<string> playersteps = new List<string> ();
 	public GameObject start;
 	AudioSource tune;
 	int clipToPlay = 0;
 	[SerializeField] string[] randomtunes;
-	int i,j;
+	int i;
 	public AudioClip lose;
 	public AudioClip startAudio;
 	private Color originalColor;
 	float timeToWait;
+	bool isfunction;
 
 
 	// Use this for initialization
 	void Start () {
+
+		isfunction = true;
 
 		playersteps.Clear ();
 
@@ -29,7 +35,7 @@ public class TileLevelManager : MonoBehaviour {
 
 		tune.clip = startAudio;
 
-		tune.Play ();
+		//tune.Play ();
 
 		Invoke ("PlaySound", 1.5f);
 
@@ -40,56 +46,100 @@ public class TileLevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-			
-
-
+		
 			StepCheck ();
+
+			for (int i = 0; i < playersteps.Count; i++) {
+			
+					if (playersteps [i] == playersteps [i + 1]) {
+						
+					playersteps.RemoveAt(i+1);
+			}
+		}
 	}
+
+
 
 	void PlaySound () {
 
+		Debug.Log ("play");
 
-
-		if (clipToPlay < 3) {
-
-			clipToPlay = clipToPlay + 1;
-
-			int j = 0;
+		if (clipToPlay == 0) {
 			
-			tiles[j] = tiles [Random.Range (0, tiles.Count)];
+			tilesRow1[clipToPlay] = tilesRow1 [Random.Range (0, tilesRow1.Count)];
 			
-			tune.clip = tiles [j].GetComponent<AudioSource>().clip;
+			tune.clip = tilesRow1 [clipToPlay].GetComponent<AudioSource>().clip;
 
 			float timeToWait = tune.clip.length;
 
-			int i = 0;
-
-			i = clipToPlay - 1;
-
-			randomtunes [i] = tune.clip.name;
+			randomtunes [clipToPlay] = tune.clip.name;
 
 			Debug.Log(randomtunes[0]+ " "+ randomtunes[1]+ " "+ randomtunes[2]);
 
 			tune.Play ();
 
-			originalColor = tiles [j].GetComponent<SpriteRenderer> ().color;
+			originalColor = tilesRow1[clipToPlay].GetComponent<SpriteRenderer> ().color;
 
-			tiles [j].GetComponent<SpriteRenderer> ().color = Color.yellow;
+			tilesRow1[clipToPlay].GetComponent<SpriteRenderer> ().color = Color.yellow;
 
 			StartCoroutine (Wait());
 
+			}
 
+		if (clipToPlay == 1) {
 
+			tilesRow2[clipToPlay] = tilesRow2 [Random.Range (0, tilesRow2.Count)];
 
+			tune.clip = tilesRow2 [clipToPlay].GetComponent<AudioSource>().clip;
 
+			float timeToWait = tune.clip.length;
+
+			randomtunes [clipToPlay] = tune.clip.name;
+
+			Debug.Log(randomtunes[0]+ " "+ randomtunes[1]+ " "+ randomtunes[2]);
+
+			tune.Play ();
+
+			originalColor = tilesRow2 [clipToPlay].GetComponent<SpriteRenderer> ().color;
+
+			tilesRow2[clipToPlay].GetComponent<SpriteRenderer> ().color = Color.yellow;
+
+			StartCoroutine (Wait());
+
+		}
+
+		if (clipToPlay == 2) {
+
+			tilesRow3 [clipToPlay] = tilesRow3[Random.Range (0, tilesRow3.Count)];
+
+			tune.clip = tilesRow3[clipToPlay].GetComponent<AudioSource>().clip;
+
+			float timeToWait = tune.clip.length;
+
+			randomtunes[clipToPlay] = tune.clip.name;
+
+			Debug.Log(randomtunes[0]+ " "+ randomtunes[1]+ " "+ randomtunes[2]);
+
+			tune.Play ();
+
+			originalColor = tilesRow3[clipToPlay].GetComponent<SpriteRenderer> ().color;
+
+			tilesRow3[clipToPlay].GetComponent<SpriteRenderer> ().color = Color.yellow;
+
+			StartCoroutine (Wait());
 
 		}
 	}
 
+
 	void Lose(){
-		
+
 		SceneManager.LoadScene (3);
+
+		//this.GetComponent<TileLevelManager> ().enabled = false;
+
 	}
+
 
 	void Win(){
 
@@ -109,7 +159,8 @@ public class TileLevelManager : MonoBehaviour {
 				if (randomtunes [i] == playersteps [i]) {
 					Debug.Log ("success " + i);
 					i = i + 1;
-				} else {
+				} 
+				else {
 					Lose ();
 				}
 			}
@@ -122,10 +173,19 @@ public class TileLevelManager : MonoBehaviour {
 
 	IEnumerator Wait(){
 		
-
 		yield return new WaitForSeconds(1);
 
-		tiles [j].GetComponent<SpriteRenderer> ().color = originalColor;
+		if (clipToPlay == 0) {
+			tilesRow1 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+		}
+		if (clipToPlay == 1) {
+			tilesRow2 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+		}
+		if (clipToPlay == 2) {
+			tilesRow3 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+		}
+
+		clipToPlay = clipToPlay + 1;
 
 		Invoke ("PlaySound", timeToWait);
 
