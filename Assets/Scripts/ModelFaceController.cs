@@ -37,6 +37,10 @@ public class ModelFaceController : MonoBehaviour {
 
     MoveFaceTowardsPlayer moveFace;
 
+    float timePassed = 0;
+
+    public bool warning = false;
+
 
 
 	// Use this for initialization
@@ -74,12 +78,36 @@ public class ModelFaceController : MonoBehaviour {
             if (stompTest.tooFast == true)
             {
                 isAwake = true;
-                isSleeping = false;
+                timePassed = 0;
             }
+            else if (stompTest.tooFast == false)
+            {
+                Debug.Log("SLOW AGAIN");
+                timePassed += Time.deltaTime;
+                //Debug.Log(timePassed);
+                if (timePassed > 4)
+                {
+                    isAwake = false;
+                    isSleeping = true;
+                }
+            }
+            if (warning == false)
+            {
+                //if (stompTest.currentVelocityMagnitude > 0.2f && stompTest.currentVelocityMagnitude < 2)
+                //{
+                //    warning = false;
+                //    Debug.Log("ALMOST TOO FAST");
+                //    audioSource.clip = snore;
+                //    audioSource.Play();
+                //    warning = true;
+                //}
+            }
+
         }
         if (isAwake == true)
         {
-            //isSleeping = false;
+            warning = false;
+            isSleeping = false;
             eyeValue = eyeValue -= Time.deltaTime * eyeSpeed;
             m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
 
@@ -97,8 +125,18 @@ public class ModelFaceController : MonoBehaviour {
         }
         if (isSleeping == true)
         {
-            //isAwake = false;
+            isAwake = false;
             StartCoroutine(WaitToLight(1));
+            moveFace.enabled = false;
+            moveFace.playing = false;
+            transformValue = 0;
+            eyeValue = 100;
+            m3D.SetBlendshapeValue("eCTRLAngry", transformValue);
+            m3D.SetBlendshapeValue("eCTRLScream", transformValue);
+            m3D.SetBlendshapeValue("Eyelid_Size", transformValue);
+            m3D.SetBlendshapeValue("EyesIrisSize", transformValue);
+            m3D.SetBlendshapeValue("FaceCenterDepth", transformValue);
+            m3D.SetBlendshapeValue("eCTRLEyesClosed", eyeValue);
             //Debug.Log("breatheValue = " + breathValue);
             //Debug.Log("breathOut = " + breathOut);
             if (breathOut == false)
@@ -154,6 +192,7 @@ public class ModelFaceController : MonoBehaviour {
 
     IEnumerator WaitToLight(float time)
     {
+        Debug.Log("WaitToLight");
         yield return new WaitForSeconds(time);
         pyreScript.Light();
     }

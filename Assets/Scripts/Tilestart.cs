@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tilestart : MonoBehaviour {
 
 	public GameObject GameManager;
+	public TileLevelManager tileLevelManager;
 
 
 	// Use this for initialization
@@ -19,11 +20,15 @@ public class Tilestart : MonoBehaviour {
 
 	void OnTriggerEnter(Collider coll){
 
+
+
 		if (coll.gameObject.tag == "Player") {
 
 			//this.GetComponent<AudioSource> ().Play ();
 	
-			GameManager.GetComponent<TileLevelManager> ().enabled = true;
+			tileLevelManager.enabled = true;
+			Debug.Log (tileLevelManager);
+			Debug.Log ("start");
 
 		}
 	}

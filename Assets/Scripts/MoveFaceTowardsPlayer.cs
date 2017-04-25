@@ -7,13 +7,13 @@ public class MoveFaceTowardsPlayer : MonoBehaviour {
 
     public GameObject target;
     public float speed;
-    AudioSource audio;
+    AudioSource audioSource;
     public AudioClip suckingIn;
-    bool playing;
+    public bool playing;
 
 	// Use this for initialization
 	void Start () {
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         playing = false;
 	}
 	
@@ -22,15 +22,15 @@ public class MoveFaceTowardsPlayer : MonoBehaviour {
 
         float step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
 
         if (playing == false)
         {
             playing = true;
-            audio.clip = suckingIn;
-            audio.Play();
+            audioSource.clip = suckingIn;
+            audioSource.PlayOneShot(suckingIn);
         }
-        StartCoroutine(WaitToChange(1.5f));
+        //StartCoroutine(WaitToChange(1.5f));
 
     }
 
