@@ -14,8 +14,20 @@ public class Skulls : MonoBehaviour {
         }
     }
 
+    public void OnCollisionExit(Collision other)
+    {
+        XOnCollisionExit(other);
+    }
+
     public virtual void XOnCollisionEnter(Collision other)
     {
         Debug.Log("Kicked a Skull");
     }
+
+    public virtual void XOnCollisionExit(Collision other)
+    {
+        Debug.Log("Done Kicking");
+    }
+
+
 }
