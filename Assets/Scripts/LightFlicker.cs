@@ -10,6 +10,7 @@ public class LightFlicker : MonoBehaviour {
     [SerializeField] float flickerThreshold = 0.6f;
     [SerializeField] float noiseSpeed = 0.01f;
     float noiseTime = 0f;
+    float noiseOffset;
 
     [SerializeField] float flickerIntensity = 0.5f;
     float originalIntensity;
@@ -32,13 +33,15 @@ public class LightFlicker : MonoBehaviour {
 
         originalIntensity = myLight.intensity;
 
+        noiseOffset = Random.Range(-10000f, 10000f);
+
         hum.Play();
 	}
 	
 	void Update ()
     {
         noiseTime += noiseSpeed;
-        float noise = Mathf.PerlinNoise(noiseTime, 0);
+        float noise = Mathf.PerlinNoise(noiseTime+noiseOffset, 0);
 
         if (noise > flickerThreshold)
         {
