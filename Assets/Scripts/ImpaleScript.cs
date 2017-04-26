@@ -33,7 +33,7 @@ public class ImpaleScript : MonoBehaviour {
         {
             Debug.Log("OUCH");
             audioSource.PlayOneShot(hurt);
-            lightSource.GetComponent<Light>().color = Color.blue;
+            //lightSource.GetComponent<Light>().color = Color.blue;
             impaledCount += 1;
             Debug.Log("ImpaledCount = " + impaledCount);
         }
