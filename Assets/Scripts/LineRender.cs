@@ -118,9 +118,11 @@ public class LineRender : MonoBehaviour {
 
 				if (endName == "Dot4") {
 					L2 = true;
+					Debug.Log ("L2:" + L2);
 				} 
 				if (endName == "Dot5" ) {
 					L1 = true;
+					Debug.Log ("L1:" + L1);
 				} 
 
 			}
@@ -139,10 +141,12 @@ public class LineRender : MonoBehaviour {
 
 				if (endName == "Dot3") {
 					L3 = true;
+					Debug.Log ("L3:" + L3);
 				}
 					
 				if (endName == "Dot4") {
 					L4 = true;
+					Debug.Log ("L4:" + L4);
 				} 
 			}
 			else{
@@ -158,10 +162,12 @@ public class LineRender : MonoBehaviour {
 
 				if (endName == "Dot2") {
 					L3 = true;
+					Debug.Log ("L3:" + L3);
 				} 
 
 				if (endName == "Dot5") {
 					L5 = true;
+					Debug.Log ("L5:" + L5);
 				} 
 			}
 
@@ -178,9 +184,11 @@ public class LineRender : MonoBehaviour {
 
 				if (endName == "Dot1") {
 					L2 = true;
+					Debug.Log ("L2:" + L2);
 				} 
 				if (endName == "Dot2") {
 					L4 = true;
+					Debug.Log ("L4:" + L4);
 				} 
 			}
 			else{
@@ -195,10 +203,12 @@ public class LineRender : MonoBehaviour {
 				i = i + 1;
 				if (endName == "Dot1") {
 					L1 = true;
+					Debug.Log ("L1:" + L1);
 				} 
 
 				if (endName == "Dot3") {
 					L5 = true;
+					Debug.Log ("L5:" + L5);
 				} 
 
 			}
