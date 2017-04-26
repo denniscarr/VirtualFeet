@@ -9,7 +9,7 @@ public class ImpaleScript : MonoBehaviour {
     float impaledCount;
     public float speed;
     public float ceilingTrigger;
-    float WARNING_TRIGGER = 0.135f;
+    float WARNING_TRIGGER = 0.137f;
 
     GameObject lightSource;
     GameObject room;
@@ -17,6 +17,8 @@ public class ImpaleScript : MonoBehaviour {
     public AudioClip hurt;
     public AudioClip spikeEngine;
     AudioSource audioSource;
+
+    public GameObject fallenSpike;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +35,7 @@ public class ImpaleScript : MonoBehaviour {
         {
             Debug.Log("OUCH");
             audioSource.PlayOneShot(hurt);
-            lightSource.GetComponent<Light>().color = Color.blue;
+            //lightSource.GetComponent<Light>().color = Color.blue;
             impaledCount += 1;
             Debug.Log("ImpaledCount = " + impaledCount);
         }
@@ -68,6 +70,7 @@ public class ImpaleScript : MonoBehaviour {
         if (warning < WARNING_TRIGGER)
         {
             Debug.Log("WARNING, TOO CLOSE");
+            //fallenSpike.gameObject.AddComponent<Rigidbody>();
         }
 		
 	}
