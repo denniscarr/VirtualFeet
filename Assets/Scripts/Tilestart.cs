@@ -10,7 +10,7 @@ public class Tilestart : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		tileLevelManager = GameManager.GetComponent<TileLevelManager> ();
 	}
 	
 	// Update is called once per frame
@@ -25,10 +25,19 @@ public class Tilestart : MonoBehaviour {
 		if (coll.gameObject.tag == "Player") {
 
 			//this.GetComponent<AudioSource> ().Play ();
-	
-			tileLevelManager.enabled = true;
-			Debug.Log (tileLevelManager);
-			Debug.Log ("start");
+		
+			if (tileLevelManager.enabled == false) {
+				tileLevelManager.enabled = true;
+				Debug.Log ("start");
+			}
+
+			else if (tileLevelManager.enabled == true) {
+				
+				if (tileLevelManager.isfunction == false) {
+					
+					tileLevelManager.Setup ();
+				}
+			}
 
 		}
 	}

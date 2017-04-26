@@ -19,7 +19,7 @@ public class TileLevelManager : MonoBehaviour {
 	public AudioClip startAudio;
 	private Color originalColor;
 	float timeToWait;
-	bool isfunction;
+	public bool isfunction;
 
 
 	// Use this for initialization
@@ -33,7 +33,7 @@ public class TileLevelManager : MonoBehaviour {
 
 		randomtunes = new string[3];
 
-		tune.clip = startAudio;
+		//tune.clip = startAudio;
 
 		//tune.Play ();
 
@@ -46,23 +46,18 @@ public class TileLevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		
+		if(isfunction == true){
 		
 			StepCheck ();
+	}			
+}
 
-			for (int i = 0; i < playersteps.Count; i++) {
-			
-					if (playersteps [i] == playersteps [i + 1]) {
-						
-					playersteps.RemoveAt(i+1);
-			}
-		}
-	}
 
 
 
 	void PlaySound () {
-
-		Debug.Log ("play");
 
 		if (clipToPlay == 0) {
 			
@@ -129,12 +124,15 @@ public class TileLevelManager : MonoBehaviour {
 			StartCoroutine (Wait());
 
 		}
-	}
+
+}
+
 
 
 	void Lose(){
 
-		SceneManager.LoadScene (3);
+		isfunction = false;
+		Debug.Log ("lose" + isfunction);
 
 		//this.GetComponent<TileLevelManager> ().enabled = false;
 
@@ -155,6 +153,14 @@ public class TileLevelManager : MonoBehaviour {
 		if (playersteps.Count != 0) {
 			
 			if (!playersteps [i].Equals ("null")) {
+
+				for (int i = 1; i < playersteps.Count; i++) {
+
+					if (playersteps [i] == playersteps [i - 1]) {
+
+						playersteps.RemoveAt(i);
+					}
+				}
 				
 				if (randomtunes [i] == playersteps [i]) {
 					Debug.Log ("success " + i);
@@ -177,19 +183,42 @@ public class TileLevelManager : MonoBehaviour {
 
 		if (clipToPlay == 0) {
 			tilesRow1 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+			clipToPlay = clipToPlay + 1;
 		}
-		if (clipToPlay == 1) {
+		else if(clipToPlay == 1) {
 			tilesRow2 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+			clipToPlay = clipToPlay + 1;
 		}
-		if (clipToPlay == 2) {
+		else if (clipToPlay == 2) {
 			tilesRow3 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+			clipToPlay = clipToPlay + 1;
 		}
-
-		clipToPlay = clipToPlay + 1;
 
 		Invoke ("PlaySound", timeToWait);
 
 
 	}
+
+	public void Setup(){
+
+
+		isfunction = true;
+
+		playersteps.Clear ();
+
+		randomtunes = new string[3];
+
+		Invoke ("PlaySound", 1.5f);
+
+		i = 0;
+
+		clipToPlay = 0;
+
+		Debug.Log ("setup");
+
+
+
+	}
+
 
 }
