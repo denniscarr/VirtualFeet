@@ -28,15 +28,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-Assets/MORPH3D/Content/Packages\.meta
-
-Assets/MORPH3D/Vendor\.meta
-
-Assets/MORPH3D/Content\.meta
-
-Assets/Objects\.meta
-
-Assets/MORPH3D\.meta
-
-Assets/MORPH3D/
