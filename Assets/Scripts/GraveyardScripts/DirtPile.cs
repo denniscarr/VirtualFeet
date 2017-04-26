@@ -18,7 +18,7 @@ public class DirtPile : Skulls {
         audioSource = GetComponent<AudioSource>();
 	}
 
-    public override void XOnCollisionEnter(Collision other)
+    public void OnTriggerEnter(Collider other)
     {
         if (kickingDirt == false)
         {
@@ -32,7 +32,7 @@ public class DirtPile : Skulls {
 
     }
 
-    public override void XOnCollisionExit(Collision other)
+    public void OnTriggerExit(Collider other)
     {
         kickingDirt = false;
     }
