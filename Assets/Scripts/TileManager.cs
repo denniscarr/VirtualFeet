@@ -5,6 +5,7 @@ using UnityEngine;
 public class TileManager : MonoBehaviour {
 
 	public GameObject gamemanager;
+	private Color originalColor;
 
 
 	// Use this for initialization
@@ -27,10 +28,26 @@ public class TileManager : MonoBehaviour {
 			Debug.Log (this.GetComponent<AudioSource> ().clip.name);
 
 			gamemanager.GetComponent<TileLevelManager> ().playersteps.Add(this.GetComponent<AudioSource> ().clip.name);
-		
 
+			originalColor = this.GetComponent<SpriteRenderer> ().color;
 
+			this.GetComponent<SpriteRenderer> ().color = Color.yellow;
+
+			StartCoroutine (Wait());
 
 		}
+	}
+
+	IEnumerator Wait(){
+
+			
+
+			yield return new WaitForSeconds(1);
+
+			this.GetComponent<SpriteRenderer> ().color = originalColor;
+
+			Debug.Log ("beingcalled");
+
+
 	}
 }
