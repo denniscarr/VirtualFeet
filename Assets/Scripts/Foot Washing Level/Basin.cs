@@ -23,7 +23,6 @@ public class Basin : MonoBehaviour {
             if (foot1.GetComponent<StompTest>().currentVelocityMagnitude > swishSpeed)
             {
                 foot1Cleanliness += cleanSpeed * Time.deltaTime;
-                Debug.Log("Cleanliness: " + foot1Cleanliness);
 
                 // Make the foot more white (debug)
                 foot1.GetComponent<MeshRenderer>().material.color = Color.Lerp(foot1.GetComponent<MeshRenderer>().material.color, Color.white, 0.05f);
