@@ -24,6 +24,10 @@ public class Ripple : MonoBehaviour {
     public int cols = 128;
     public int rows = 128;
 
+    [SerializeField] GameObject waterSwishAudioPrefab;
+    float audioCooldown = 0.8f;
+    float timeSinceLastAudio = 0.8f;
+
 
 	// Use this for initialization
     void Start ()
@@ -80,7 +84,9 @@ public class Ripple : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        CheckInput();
+        //CheckInput();
+
+        timeSinceLastAudio += Time.deltaTime;
 
         int[] currentBuffer;
         if (swapMe)
@@ -120,6 +126,7 @@ public class Ripple : MonoBehaviour {
 	        if (Physics.Raycast (Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 50f, 1 << 4))
             {
                 if (hit.textureCoord.x == 0 || hit.textureCoord.y == 0) return;
+                Debug.DrawRay(hit.point, Vector3.right * 100);
                 Debug.Log("splash");
     	        Bounds bounds = mesh.bounds;
     	        float xStep = (bounds.max.x - bounds.min.x)/cols;
@@ -138,16 +145,23 @@ public class Ripple : MonoBehaviour {
     {
         if (other.name == "Foot Cube")
         {
-            Debug.Log("foot in water");
             RaycastHit hit;
             Debug.DrawRay(new Vector3(other.ClosestPointOnBounds(transform.position).x, other.ClosestPointOnBounds(transform.position).y + 0.5f, other.ClosestPointOnBounds(transform.position).z),
                 Vector3.down, Color.red);
 
             if (Physics.Raycast(new Vector3(other.ClosestPointOnBounds(transform.position).x, other.ClosestPointOnBounds(transform.position).y + 0.5f, other.ClosestPointOnBounds(transform.position).z),
                 Vector3.down, out hit, 5f, 1 << 4))
+            //if (Physics.Raycast(Camera.main.ScreenPointToRay(other.ClosestPointOnBounds(Camera.main.WorldToScreenPoint(transform.position))), out hit, 5f, 1<<4))
             {
-                if (hit.textureCoord.x == 0 || hit.textureCoord.y == 0) return;
-                Debug.Log("splish splash");
+                Debug.Log("foot splash " + hit.textureCoord + ", " + hit.collider.name);
+                Debug.DrawRay(hit.point, Vector3.right * 100);
+                //if (hit.textureCoord.x == 0 || hit.textureCoord.y == 0) return;
+                if (timeSinceLastAudio >= audioCooldown)
+                {
+                    Instantiate(waterSwishAudioPrefab, hit.point, Quaternion.identity);
+                    timeSinceLastAudio = 0f;
+                }
+
                 Bounds bounds = mesh.bounds;
                 float xStep = (bounds.max.x - bounds.min.x) / cols;
                 float zStep = (bounds.max.z - bounds.min.z) / rows;

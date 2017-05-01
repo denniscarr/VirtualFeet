@@ -8,6 +8,8 @@ public class Carpet : MonoBehaviour {
 
     Basin basin;
 
+    [SerializeField] AudioSource error;
+
 
     private void Start()
     {
@@ -34,7 +36,13 @@ public class Carpet : MonoBehaviour {
         if ((other.gameObject == basin.foot1 && basin.foot1Cleanliness < 1f)
             || (other.gameObject == basin.foot2 && basin.foot2Cleanliness < 1f))
         {
+            error.Play();
             dirtyFeetInMe++;
+        }
+
+        else
+        {
+
         }
     }
 
