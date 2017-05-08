@@ -10,6 +10,7 @@ public class Tilestart : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
 		tileLevelManager = GameManager.GetComponent<TileLevelManager> ();
 	}
 	
