@@ -12,6 +12,8 @@ public class Basin : MonoBehaviour {
     public float foot1Cleanliness = 0f;
     public float foot2Cleanliness = 0f;
 
+    bool foot1Clean, foot2Clean;
+
     [SerializeField] float swishSpeed = 0.1f;   // How fast you need to swish your foot around in the water to clean it.
     [SerializeField] float cleanSpeed = 0.1f;
 
@@ -19,9 +21,39 @@ public class Basin : MonoBehaviour {
     bool foot1AudioPlayed;
     bool foot2AudioPlayed;
 
+    Pyre pyre;
+
+
+    private void Start()
+    {
+        pyre = GameObject.Find("Pyre").GetComponent<Pyre>();
+    }
+
 
     private void Update()
     {
+        if (pyre.lit) return;
+
+        // If both feet are clean, light the pyre.
+        if (foot1Clean && foot2Clean)
+        {
+            pyre.Light();
+        }
+
+        // See if either foot is actually clean.
+        if (foot1Cleanliness >= 1f)
+        {
+            // Play some audio & maybe particles here too idk.
+            foot1Clean = true;
+        }
+
+        if (foot2Cleanliness >= 1f)
+        {
+            // Play some audio here.
+            foot2Clean = true;
+        }
+
+        // Cleaning stuff for one foot.
         if (foot1In)
         {
             if (foot1.GetComponent<StompTest>().currentVelocityMagnitude > swishSpeed)
@@ -39,7 +71,7 @@ public class Basin : MonoBehaviour {
             }
         }
 
-
+        // Cleaning stuff for the other foot.
         if (foot2In)
         {
             if (foot2.GetComponent<StompTest>().currentVelocityMagnitude > swishSpeed)
