@@ -99,8 +99,8 @@ public class Basin : MonoBehaviour {
                     foot2AudioPlayed = true;
                 }
 
-                // Make the foot more white (debug)
-                foot2.GetComponent<MeshRenderer>().material.color = new Color(foot2Cleanliness, foot2Cleanliness, foot2Cleanliness, 1f);
+                // Fade out the dirty mesh
+                foot2Dirty.GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.white, new Color(1f, 1f, 1f, 0f), foot2Cleanliness);
             }
         }
     }
