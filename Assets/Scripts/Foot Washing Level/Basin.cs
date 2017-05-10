@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Basin : MonoBehaviour {
 
+    // References to the game object containing each foot
     [SerializeField] public GameObject foot1;
     [SerializeField] public GameObject foot2;
 
+    // References to the dirty mesh of each foot.
+    [SerializeField] private GameObject foot1Dirty;
+    [SerializeField] private GameObject foot2Dirty;
+
+
+    // Whether each foot is in the basin.
     private bool foot1In, foot2In;
 
+    // The cleanliness of each foot (percentage)
     public float foot1Cleanliness = 0f;
     public float foot2Cleanliness = 0f;
 
+    // Whether each foot is fully clean.
     bool foot1Clean, foot2Clean;
+
+    [SerializeField] bool justOneFootRequired;   // Used for testing with the mouse.
 
     [SerializeField] float swishSpeed = 0.1f;   // How fast you need to swish your foot around in the water to clean it.
     [SerializeField] float cleanSpeed = 0.1f;
@@ -35,7 +46,7 @@ public class Basin : MonoBehaviour {
         if (pyre.lit) return;
 
         // If both feet are clean, light the pyre.
-        if (foot1Clean && foot2Clean)
+        if ((foot1Clean && foot2Clean) || (justOneFootRequired && (foot1Clean || foot2Clean)))
         {
             pyre.Light();
         }
@@ -67,7 +78,11 @@ public class Basin : MonoBehaviour {
                 }
 
                 // Make the foot more white (debug)
-                foot1.GetComponent<MeshRenderer>().material.color = Color.Lerp(foot1.GetComponent<MeshRenderer>().material.color, Color.white, 0.05f);
+                //float newColorValue = MyMath.Map(foot1Cleanliness, 0f
+                //foot1.GetComponent<MeshRenderer>().material.color = new Color(foot1Cleanliness, foot1Cleanliness, foot1Cleanliness, 1f);
+
+                // Fade out the dirty mesh according to cleanliness.
+                foot1Dirty.GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.white, new Color(1f, 1f, 1f, 0f), foot1Cleanliness);
             }
         }
 
@@ -85,7 +100,7 @@ public class Basin : MonoBehaviour {
                 }
 
                 // Make the foot more white (debug)
-                foot2.GetComponent<MeshRenderer>().material.color = Color.Lerp(foot2.GetComponent<MeshRenderer>().material.color, Color.white, 0.05f);
+                foot2.GetComponent<MeshRenderer>().material.color = new Color(foot2Cleanliness, foot2Cleanliness, foot2Cleanliness, 1f);
             }
         }
     }
