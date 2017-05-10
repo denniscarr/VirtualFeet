@@ -73,9 +73,9 @@ public class TileLevelManager : MonoBehaviour {
 
 			tune.Play ();
 
-			originalColor = tilesRow1[clipToPlay].GetComponent<SpriteRenderer> ().color;
+			originalColor = tilesRow1[clipToPlay].GetComponent<Renderer>().material.GetColor("_EmissionColor");
 
-			tilesRow1[clipToPlay].GetComponent<SpriteRenderer> ().color = Color.yellow;
+			tilesRow1[clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",Color.yellow);
 
 			StartCoroutine (Wait());
 
@@ -95,10 +95,9 @@ public class TileLevelManager : MonoBehaviour {
 
 			tune.Play ();
 
-			originalColor = tilesRow2 [clipToPlay].GetComponent<SpriteRenderer> ().color;
+			originalColor = tilesRow2 [clipToPlay].GetComponent<Renderer>().material.GetColor("_EmissionColor");
 
-			tilesRow2[clipToPlay].GetComponent<SpriteRenderer> ().color = Color.yellow;
-
+			tilesRow2[clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",Color.yellow);
 			StartCoroutine (Wait());
 
 		}
@@ -117,9 +116,9 @@ public class TileLevelManager : MonoBehaviour {
 
 			tune.Play ();
 
-			originalColor = tilesRow3[clipToPlay].GetComponent<SpriteRenderer> ().color;
+			originalColor = tilesRow3[clipToPlay].GetComponent<Renderer>().material.GetColor("_EmissionColor");
 
-			tilesRow3[clipToPlay].GetComponent<SpriteRenderer> ().color = Color.yellow;
+			tilesRow3[clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",Color.yellow);
 
 			StartCoroutine (Wait());
 
@@ -184,15 +183,15 @@ public class TileLevelManager : MonoBehaviour {
 		yield return new WaitForSeconds(1);
 
 		if (clipToPlay == 0) {
-			tilesRow1 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+			tilesRow1 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
 			clipToPlay = clipToPlay + 1;
 		}
 		else if(clipToPlay == 1) {
-			tilesRow2 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+			tilesRow2 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
 			clipToPlay = clipToPlay + 1;
 		}
 		else if (clipToPlay == 2) {
-			tilesRow3 [clipToPlay].GetComponent<SpriteRenderer> ().color = originalColor;
+			tilesRow3 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
 			clipToPlay = clipToPlay + 1;
 		}
 

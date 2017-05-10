@@ -29,9 +29,9 @@ public class TileManager : MonoBehaviour {
 
 			gamemanager.GetComponent<TileLevelManager> ().playersteps.Add(this.GetComponent<AudioSource> ().clip.name);
 
-			originalColor = this.GetComponent<SpriteRenderer> ().color;
+			originalColor = this.GetComponent<Renderer>().material.GetColor("_EmissionColor");
 
-			this.GetComponent<SpriteRenderer> ().color = Color.yellow;
+			this.GetComponent<Renderer> ().material.SetColor("_EmissionColor",Color.yellow);
 
 			StartCoroutine (Wait());
 
@@ -41,12 +41,9 @@ public class TileManager : MonoBehaviour {
 	IEnumerator Wait(){
 
 			
-
 			yield return new WaitForSeconds(1);
 
-			this.GetComponent<SpriteRenderer> ().color = originalColor;
-
-			Debug.Log ("beingcalled");
+			this.GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
 
 
 	}
