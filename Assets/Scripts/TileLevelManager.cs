@@ -134,6 +134,7 @@ public class TileLevelManager : MonoBehaviour {
 
 		isfunction = false;
 		Debug.Log ("lose" + isfunction);
+        FindObjectOfType<Tilestart>().startPressed = false;
 
 		//this.GetComponent<TileLevelManager> ().enabled = false;
 
