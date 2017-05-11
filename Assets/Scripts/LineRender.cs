@@ -17,7 +17,7 @@ public class LineRender : MonoBehaviour {
 	public string startName;
 	public string endName;
 
-	bool L1,L2,L3,L4,L5;
+	static bool L1,L2,L3,L4,L5;
 	bool startaline;
 	bool isdrawing;
 	int i;
@@ -63,11 +63,7 @@ public class LineRender : MonoBehaviour {
 			LineCheck ();
 		}
 
-
-
-
-		
-
+        CheckForCompletion();
 	}
 
 	void OnTriggerEnter(Collider col){
@@ -218,12 +214,16 @@ public class LineRender : MonoBehaviour {
 			}
 		}
 
-		if (L1 && L2 && L3 && L4 && L5 == true) {
-
-			Debug.Log ("fire");
-			
-			GameObject.Find ("Pyre").SendMessage ("Light");
-		}
 	}
+
+    void CheckForCompletion()
+    {
+        if (L1 && L2 && L3 && L4 && L5 == true)
+        {
+            Debug.Log("fire");
+
+            GameObject.Find("Pyre").SendMessage("Light");
+        }
+    }
 
 }
