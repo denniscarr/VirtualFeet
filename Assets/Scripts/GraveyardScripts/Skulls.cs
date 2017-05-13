@@ -8,7 +8,7 @@ public class Skulls : MonoBehaviour {
 
     public void OnCollisionEnter (Collision other)
     {
-        if (other.gameObject.name == "Foot Cube")
+        if (other.gameObject.name.Contains("Foot Cube"))
         {
             XOnCollisionEnter(other);
         }

@@ -31,7 +31,7 @@ public class ImpaleScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Foot Cube")
+        if (other.gameObject.name.Contains("Foot Cube"))
         {
             Debug.Log("OUCH");
             audioSource.PlayOneShot(hurt);
@@ -49,7 +49,7 @@ public class ImpaleScript : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "Foot Cube")
+        if (other.gameObject.name.Contains("Foot Cube"))
         {
             Debug.Log("OUCH");
             lightSource.GetComponent<Light>().color = Color.red;
