@@ -26,11 +26,13 @@ public class Basin : MonoBehaviour {
     [SerializeField] bool justOneFootRequired;   // Used for testing with the mouse.
 
     [SerializeField] float swishSpeed = 0.1f;   // How fast you need to swish your foot around in the water to clean it.
-    [SerializeField] float cleanSpeed = 0.1f;
+    [SerializeField] float cleanSpeed = 0.1f;   // How quickly your foot gets cleaned.
 
     [SerializeField] AudioSource successAudioSource;
     bool foot1AudioPlayed;
     bool foot2AudioPlayed;
+
+    [SerializeField] GameObject sparkles;   // The particle system which appears when a foot becomes fully clean.
 
     Pyre pyre;
 
@@ -74,6 +76,9 @@ public class Basin : MonoBehaviour {
                 if (!foot1AudioPlayed && foot1Cleanliness >= 1f)
                 {
                     successAudioSource.Play();
+                    GameObject newSparkles = Instantiate(sparkles);
+                    newSparkles.transform.SetParent(foot1.transform);
+                    newSparkles.transform.localPosition = Vector3.zero;
                     foot1AudioPlayed = true;
                 }
 
