@@ -153,7 +153,7 @@ public class Ripple : MonoBehaviour {
                 Vector3.down, out hit, 5f, 1 << 4))
             //if (Physics.Raycast(Camera.main.ScreenPointToRay(other.ClosestPointOnBounds(Camera.main.WorldToScreenPoint(transform.position))), out hit, 5f, 1<<4))
             {
-                Debug.Log("foot splash " + hit.textureCoord + ", " + hit.collider.name);
+                //Debug.Log("foot splash " + hit.textureCoord + ", " + hit.collider.name);
                 Debug.DrawRay(hit.point, Vector3.right * 100);
                 //if (hit.textureCoord.x == 0 || hit.textureCoord.y == 0) return;
                 if (timeSinceLastAudio >= audioCooldown)

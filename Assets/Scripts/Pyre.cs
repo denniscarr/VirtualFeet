@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Pyre : MonoBehaviour {
 
-    private bool lit;   // Whether the pyre is lit.
+    public bool lit;   // Whether the pyre is lit.
 
     private int feetInsideMe;   // Keeps track of how many of the player's feet are inside me. (So we can make sure the player has both feet in the fire.)
     [SerializeField] int requiredFeet = 2;  // Lets the pyre activate me with just one foot inside me. (To make debugging easier).

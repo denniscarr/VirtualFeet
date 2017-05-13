@@ -7,9 +7,12 @@ public class Tilestart : MonoBehaviour {
 	public GameObject GameManager;
 	public TileLevelManager tileLevelManager;
 
+    public bool startPressed;
+
 
 	// Use this for initialization
 	void Start () {
+		
 		tileLevelManager = GameManager.GetComponent<TileLevelManager> ();
 	}
 	
@@ -20,9 +23,9 @@ public class Tilestart : MonoBehaviour {
 
 	void OnTriggerEnter(Collider coll){
 
-
-
 		if (coll.gameObject.tag == "Player") {
+
+            if (startPressed) return;
 
 			//this.GetComponent<AudioSource> ().Play ();
 		
@@ -34,11 +37,13 @@ public class Tilestart : MonoBehaviour {
 			else if (tileLevelManager.enabled == true) {
 				
 				if (tileLevelManager.isfunction == false) {
-					
+
+                    Debug.Log("reset");
 					tileLevelManager.Setup ();
 				}
 			}
 
+            startPressed = true;
 		}
 	}
 }
