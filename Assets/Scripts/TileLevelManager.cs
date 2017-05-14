@@ -135,6 +135,8 @@ public class TileLevelManager : MonoBehaviour {
 		isfunction = false;
 		Debug.Log ("lose" + isfunction);
         FindObjectOfType<Tilestart>().startPressed = false;
+		FindObjectOfType<Tilestart>().startclosing = false;
+		FindObjectOfType<Tilestart>().startopen = true;
 
 		//this.GetComponent<TileLevelManager> ().enabled = false;
 
@@ -217,7 +219,6 @@ public class TileLevelManager : MonoBehaviour {
 		clipToPlay = 0;
 
 		Debug.Log ("setup");
-
 
 
 	}
