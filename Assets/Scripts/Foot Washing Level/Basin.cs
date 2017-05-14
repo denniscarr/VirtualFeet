@@ -73,12 +73,13 @@ public class Basin : MonoBehaviour {
             {
                 foot1Cleanliness += cleanSpeed * Time.deltaTime;
 
-                if (!foot1AudioPlayed && foot1Cleanliness >= 1f)
+                if (!foot1AudioPlayed && foot1Cleanliness >= 0.9f)
                 {
                     successAudioSource.Play();
                     GameObject newSparkles = Instantiate(sparkles);
                     newSparkles.transform.SetParent(foot1.transform);
                     newSparkles.transform.localPosition = Vector3.zero;
+                    Destroy(foot1Dirty);
                     foot1AudioPlayed = true;
                 }
 
@@ -98,9 +99,13 @@ public class Basin : MonoBehaviour {
             {
                 foot2Cleanliness += cleanSpeed * Time.deltaTime;
 
-                if (!foot2AudioPlayed && foot2Cleanliness >= 1f)
+                if (!foot2AudioPlayed && foot2Cleanliness >= 0.9f)
                 {
                     successAudioSource.Play();
+                    GameObject newSparkles = Instantiate(sparkles);
+                    newSparkles.transform.SetParent(foot1.transform);
+                    newSparkles.transform.localPosition = Vector3.zero;
+                    Destroy(foot2Dirty);
                     foot2AudioPlayed = true;
                 }
 

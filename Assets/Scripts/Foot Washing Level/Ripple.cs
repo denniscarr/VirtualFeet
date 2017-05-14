@@ -156,8 +156,9 @@ public class Ripple : MonoBehaviour {
                 //Debug.Log("foot splash " + hit.textureCoord + ", " + hit.collider.name);
                 Debug.DrawRay(hit.point, Vector3.right * 100);
                 //if (hit.textureCoord.x == 0 || hit.textureCoord.y == 0) return;
-                if (timeSinceLastAudio >= audioCooldown)
+                if (timeSinceLastAudio >= audioCooldown && other.GetComponent<StompTest>().currentVelocityMagnitude >= 0.1f)
                 {
+                    Debug.Log("Playing splish splash audio");
                     Instantiate(waterSwishAudioPrefab, hit.point, Quaternion.identity);
                     timeSinceLastAudio = 0f;
                 }
