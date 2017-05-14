@@ -14,7 +14,7 @@ public class Kickable : MonoBehaviour {
             // Get the velocity of the player's foot.
             Vector3 footVelocity = collision.collider.GetComponent<StompTest>().currentVelocity;
             footVelocity.Normalize();
-            Debug.Log(footVelocity);
+            //Debug.Log(footVelocity);
             //GetComponent<Rigidbody>().AddExplosionForce(collision.relativeVelocity.magnitude * 1.1f, collision.transform.position, 1f, 0.1f, ForceMode.Impulse);
             GetComponent<Rigidbody>().AddForce(footVelocity * kickForce * collision.relativeVelocity.magnitude, ForceMode.Impulse);
         }

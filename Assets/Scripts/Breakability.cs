@@ -190,7 +190,7 @@ public class Breakability : MonoBehaviour {
             }
         }
 
-        if (!GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned)
+        if (!GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartHasSpawned)
         {
 
             bool shouldSpawn = false;
@@ -208,9 +208,10 @@ public class Breakability : MonoBehaviour {
             if (shouldSpawn)
             {
                 Instantiate(heart, transform.position, Random.rotation);
-                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartSpawned = true;
+                Debug.Log("Spawning heart.");
+                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().heartHasSpawned = true;
+                GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().OpenHatch();
             }
-
         }
 
         GameObject.Find("Level Manager").GetComponent<BreakLevelManager>().statuesBroken++;
