@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: f9ee03ffcf49c824495b01834675fb4d
-timeCreated: 1488767684
+guid: 0dc6a6a0721317442868bbfee955850e
+timeCreated: 1494794081
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: grp1
     400000: //RootNode
-    400002: grp1
-    2300000: grp1
-    3300000: grp1
-    4300000: grp1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pPyramid3
   materials:
     importMaterials: 1
     materialName: 0
@@ -36,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 90
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
