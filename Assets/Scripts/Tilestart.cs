@@ -37,7 +37,7 @@ public class Tilestart : MonoBehaviour {
 			float distCovered = Time.time/n;
 			float fracJourney = distCovered / journeyLength;
 			transform.position = Vector3.Lerp (HighPosition.position, LowPosition.position, fracJourney);
-			Debug.Log ("golow");
+			//Debug.Log ("golow");
 		}
 
 		if (startopen == true) {
@@ -59,6 +59,7 @@ public class Tilestart : MonoBehaviour {
 			if (tileLevelManager.enabled == false) {
 				
 				tileLevelManager.enabled = true;
+
 				Debug.Log ("start");
 				startclosing = true;
 
@@ -73,10 +74,11 @@ public class Tilestart : MonoBehaviour {
 					startopen = false;
                     Debug.Log("reset");
 					tileLevelManager.Setup ();
+					startPressed = true;
 				}
 			}
 
-            startPressed = true;
+            
 		}
 	}
 }
