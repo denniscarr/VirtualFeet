@@ -16,8 +16,12 @@ public class Pyre : MonoBehaviour {
 
     public bool alwaysLit;
 
+    bool isBurningPlayer;
+
     void Start()
     {
+        GetComponent<ScreenFade>().StartFadingIn();
+
         if(alwaysLit == true)
         {
             Light();
@@ -31,6 +35,15 @@ public class Pyre : MonoBehaviour {
         // If I am lit, check whether the player has both feet inside me.
         if (lit && feetInsideMe >= requiredFeet)
         {
+            if (!isBurningPlayer)
+            {
+                GetComponent<ScreenFade>().StartFadingOut();
+                isBurningPlayer = true;
+            }
+        }
+
+        if (isBurningPlayer)
+        {
             BurnPlayer();
         }
 	}
@@ -38,6 +51,15 @@ public class Pyre : MonoBehaviour {
 
     // Makes the player feel like they're on fire and changes the scene.
     private void BurnPlayer()
+    {
+        if (GetComponent<ScreenFade>().isFinishedFading)
+        {
+            ChangeScene();
+        }
+    }
+
+
+    private void ChangeScene()
     {
         /* Add effects and stuff here */
         if (nextSceneName != "")
