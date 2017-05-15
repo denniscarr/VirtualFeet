@@ -37,7 +37,7 @@ public class StompTest : MonoBehaviour {
     AudioSource audioSource;
 
     // USED FOR PICKING UP/DROPPING OBJECTS
-    bool footGlue = false;
+    //bool footGlue = false;
     public float jointSpring = 200f;
     public float jointBreakForce = 50f;
 
@@ -132,17 +132,16 @@ public class StompTest : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Foot Pickup" && footGlue)
-        {
-            Debug.Log("Touched a pickup item.");
+        //if (collision.gameObject.tag == "Foot Pickup" && footGlue)
+        //{
+        //    Debug.Log("Touched a pickup item.");
 
-            // Attach to foot with joint.
-            SpringJoint newJoint = collision.gameObject.AddComponent<SpringJoint>();
-            newJoint.connectedBody = GetComponent<Rigidbody>();
-            newJoint.spring = jointSpring;
-//            newJoint.
-            newJoint.breakForce = jointBreakForce;
-        }
+        //    // Attach to foot with joint.
+        //    SpringJoint newJoint = collision.gameObject.AddComponent<SpringJoint>();
+        //    newJoint.connectedBody = GetComponent<Rigidbody>();
+        //    newJoint.spring = jointSpring;
+        //    newJoint.breakForce = jointBreakForce;
+        //}
     }
 
 	void OnTriggerEnter(Collider collider) 
@@ -151,11 +150,13 @@ public class StompTest : MonoBehaviour {
         {
             onFloor = true;
         }
-        else if (collider.tag == "Glue")
-        {
-            GetComponent<MeshRenderer>().material = collider.GetComponent<MeshRenderer>().material;
-            footGlue = true;
-        }
+
+        // Removed glue functionality for now.
+        //else if (collider.tag == "Glue")
+        //{
+        //    GetComponent<MeshRenderer>().material = collider.GetComponent<MeshRenderer>().material;
+        //    footGlue = true;
+        //}
 	}
 
 	void OnTriggerExit(Collider collider)

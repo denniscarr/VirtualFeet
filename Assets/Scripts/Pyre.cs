@@ -11,13 +11,18 @@ public class Pyre : MonoBehaviour {
     [SerializeField] int requiredFeet = 2;  // Lets the pyre activate me with just one foot inside me. (To make debugging easier).
 
     [SerializeField] private GameObject particles;  // A reference to the game object holding my fire particles.
+    [SerializeField] private GameObject wildFireParticles;  // The particles which appear when the player is burning.
 
     [SerializeField ] private string nextSceneName = "";  // The scene to teleport the player to when they burn.
 
     public bool alwaysLit;
 
+    bool isBurningPlayer;
+
     void Start()
     {
+        GetComponent<ScreenFade>().StartFadingIn();
+
         if(alwaysLit == true)
         {
             Light();
@@ -31,6 +36,18 @@ public class Pyre : MonoBehaviour {
         // If I am lit, check whether the player has both feet inside me.
         if (lit && feetInsideMe >= requiredFeet)
         {
+            if (!isBurningPlayer)
+            {
+                GetComponent<ScreenFade>().StartFadingOut();
+                GameObject wildFire = Instantiate(wildFireParticles);
+                wildFire.transform.SetParent(GameObject.Find("FollowHead").transform);
+                wildFire.transform.localPosition = GameObject.Find("FollowHead").transform.forward;
+                isBurningPlayer = true;
+            }
+        }
+
+        if (isBurningPlayer)
+        {
             BurnPlayer();
         }
 	}
@@ -38,6 +55,15 @@ public class Pyre : MonoBehaviour {
 
     // Makes the player feel like they're on fire and changes the scene.
     private void BurnPlayer()
+    {
+        if (GetComponent<ScreenFade>().isFinishedFading)
+        {
+            Invoke("ChangeScene", 1f);
+        }
+    }
+
+
+    private void ChangeScene()
     {
         /* Add effects and stuff here */
         if (nextSceneName != "")
