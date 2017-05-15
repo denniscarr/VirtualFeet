@@ -19,11 +19,18 @@ public class LighthouseLevelManager : MonoBehaviour {
 
             if (_statuesBurned >= requiredStatues && !pyreLit)
             {
+                foreach(ParticleSystem ps in fireGameObject.GetComponentsInChildren<ParticleSystem>())
+                {
+                    ParticleSystem.EmissionModule emission = ps.emission;
+                    emission.enabled = false;
+                }
                 GameObject.Find("Pyre").GetComponent<Pyre>().Light();
                 pyreLit = true;
             }
         }
     }
+    [SerializeField] GameObject fireGameObject;
+
 
     bool pyreLit = false;
 }

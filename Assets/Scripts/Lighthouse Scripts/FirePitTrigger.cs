@@ -29,6 +29,9 @@ public class FirePitTrigger : MonoBehaviour {
 
             flameLight.color = statueColor;
 
+            GetComponent<AudioSource>().pitch = Random.Range(0.7f, 1f);
+            GetComponent<AudioSource>().Play();
+
             // Tell the level manager that a statue has been burned.
             GameObject.Find("Game Manager").GetComponent<LighthouseLevelManager>().statuesBurned++;
 
