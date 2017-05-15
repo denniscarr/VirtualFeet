@@ -75,6 +75,7 @@ public class Basin : MonoBehaviour {
 
                 if (!foot1AudioPlayed && foot1Cleanliness >= 0.9f)
                 {
+                    foot1Dirty.GetComponent<MeshRenderer>().material.color = new Color(0f, 0f, 0f, 0f);
                     successAudioSource.Play();
                     GameObject newSparkles = Instantiate(sparkles);
                     newSparkles.transform.SetParent(foot1.transform);
@@ -101,6 +102,7 @@ public class Basin : MonoBehaviour {
 
                 if (!foot2AudioPlayed && foot2Cleanliness >= 0.9f)
                 {
+                    foot2Dirty.GetComponent<MeshRenderer>().material.color = new Color(0f, 0f, 0f, 0f);
                     successAudioSource.Play();
                     GameObject newSparkles = Instantiate(sparkles);
                     newSparkles.transform.SetParent(foot1.transform);

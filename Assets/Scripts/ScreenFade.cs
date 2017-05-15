@@ -15,6 +15,14 @@ public class ScreenFade : MonoBehaviour {
     bool isFading;
 
 
+    private void Start()
+    {
+        AudioListener.volume = 0f;
+
+        StartFadingIn();
+    }
+
+
     private void OnGUI()
     {
         FadeScreen();
@@ -55,6 +63,9 @@ public class ScreenFade : MonoBehaviour {
 
         // Draw the texture.
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeTexture);
+
+        // Fade audio
+        AudioListener.volume = 1f - alpha;
 
         // See if the fading out has finished.
         if ((fadeDir == -1 && alpha >= 1f) || (fadeDir == 1 && alpha <= 0f))

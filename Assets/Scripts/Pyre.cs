@@ -11,6 +11,7 @@ public class Pyre : MonoBehaviour {
     [SerializeField] int requiredFeet = 2;  // Lets the pyre activate me with just one foot inside me. (To make debugging easier).
 
     [SerializeField] private GameObject particles;  // A reference to the game object holding my fire particles.
+    [SerializeField] private GameObject wildFireParticles;  // The particles which appear when the player is burning.
 
     [SerializeField ] private string nextSceneName = "";  // The scene to teleport the player to when they burn.
 
@@ -38,6 +39,9 @@ public class Pyre : MonoBehaviour {
             if (!isBurningPlayer)
             {
                 GetComponent<ScreenFade>().StartFadingOut();
+                GameObject wildFire = Instantiate(wildFireParticles);
+                wildFire.transform.SetParent(GameObject.Find("FollowHead").transform);
+                wildFire.transform.localPosition = GameObject.Find("FollowHead").transform.forward;
                 isBurningPlayer = true;
             }
         }
@@ -54,7 +58,7 @@ public class Pyre : MonoBehaviour {
     {
         if (GetComponent<ScreenFade>().isFinishedFading)
         {
-            ChangeScene();
+            Invoke("ChangeScene", 1f);
         }
     }
 
