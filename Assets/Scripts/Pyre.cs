@@ -17,12 +17,8 @@ public class Pyre : MonoBehaviour {
 
     public bool alwaysLit;
 
-    bool isBurningPlayer;
-
     void Start()
     {
-        GetComponent<ScreenFade>().StartFadingIn();
-
         if(alwaysLit == true)
         {
             Light();
