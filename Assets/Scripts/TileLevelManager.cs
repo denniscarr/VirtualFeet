@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TileLevelManager : MonoBehaviour {
-	
+
 	public List<GameObject> tiles;
 	public List<GameObject> tilesRow1;
 	public List<GameObject> tilesRow2;
@@ -25,8 +25,6 @@ public class TileLevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Debug.Log ("starttitlemanager");
-
 		isfunction = true;
 
 		playersteps.Clear ();
@@ -39,7 +37,7 @@ public class TileLevelManager : MonoBehaviour {
 
 		//tune.Play ();
 
-		Invoke ("PlaySound", 3f);
+		Invoke ("PlaySound", 1.5f);
 
 		i = 0;
 
@@ -137,8 +135,6 @@ public class TileLevelManager : MonoBehaviour {
 		isfunction = false;
 		Debug.Log ("lose" + isfunction);
         FindObjectOfType<Tilestart>().startPressed = false;
-		FindObjectOfType<Tilestart>().startclosing = false;
-		FindObjectOfType<Tilestart>().startopen = true;
 
 		//this.GetComponent<TileLevelManager> ().enabled = false;
 
@@ -187,20 +183,18 @@ public class TileLevelManager : MonoBehaviour {
 		
 		yield return new WaitForSeconds(1);
 
-//		if (clipToPlay == 0) {
-//			tilesRow1 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
-//			clipToPlay = clipToPlay + 1;
-//		}
-//		else if(clipToPlay == 1) {
-//			tilesRow2 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
-//			clipToPlay = clipToPlay + 1;
-//		}
-//		else if (clipToPlay == 2) {
-//			tilesRow3 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
-//			clipToPlay = clipToPlay + 1;
-//		}
-
-		clipToPlay = clipToPlay + 1;
+		if (clipToPlay == 0) {
+			tilesRow1 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
+			clipToPlay = clipToPlay + 1;
+		}
+		else if(clipToPlay == 1) {
+			tilesRow2 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
+			clipToPlay = clipToPlay + 1;
+		}
+		else if (clipToPlay == 2) {
+			tilesRow3 [clipToPlay].GetComponent<Renderer> ().material.SetColor("_EmissionColor",originalColor);
+			clipToPlay = clipToPlay + 1;
+		}
 
 		Invoke ("PlaySound", timeToWait);
 
@@ -224,10 +218,8 @@ public class TileLevelManager : MonoBehaviour {
 
 		Debug.Log ("setup");
 
-		for (i = 0; i < tiles.Count; i++) {
 
-			tiles[i].GetComponent<TileManager> ().reset = true;
-		}
+
 	}
 
 
