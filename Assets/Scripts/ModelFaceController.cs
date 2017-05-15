@@ -85,7 +85,7 @@ public class ModelFaceController : MonoBehaviour {
                 Debug.Log("SLOW AGAIN");
                 timePassed += Time.deltaTime;
                 //Debug.Log(timePassed);
-                if (timePassed > 4)
+                if (timePassed > 2)
                 {
                     isAwake = false;
                     isSleeping = true;
