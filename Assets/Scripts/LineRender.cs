@@ -21,6 +21,7 @@ public class LineRender : MonoBehaviour {
 	bool startaline;
 	bool isdrawing;
 	int i;
+    
 
 
 	// Use this for initialization
@@ -36,9 +37,15 @@ public class LineRender : MonoBehaviour {
 
 		L1 = L2 = L3 = L4 = L5 = false;
 
-		i = 0; 
+		i = 0;
 
-	}
+        dot1 = GameObject.Find("Dot1");
+        dot2 = GameObject.Find("Dot2");
+        dot3 = GameObject.Find("Dot3");
+        dot4 = GameObject.Find("Dot4");
+        dot5 = GameObject.Find("Dot5");
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

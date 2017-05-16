@@ -46,6 +46,8 @@ public class TileManager : MonoBehaviour {
 		
 		if (coll.gameObject.tag == "Player") {
 
+            Debug.Log("Foot contact");
+
 			this.GetComponent<AudioSource>().PlayOneShot(thisClip,1f);
 
 			Debug.Log (this.GetComponent<AudioSource> ().clip.name);

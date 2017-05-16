@@ -15,6 +15,7 @@ public class MoveFaceTowardsPlayer : MonoBehaviour {
 	void Start () {
         audioSource = GetComponent<AudioSource>();
         playing = false;
+        target = GameObject.Find("VRCamera");
 	}
 	
 	// Update is called once per frame

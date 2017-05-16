@@ -24,10 +24,10 @@ public class Pyre : MonoBehaviour {
     {
         GetComponent<ScreenFade>().StartFadingIn();
 
-        if (wildFireParticles != null)
-        {
-            Destroy(wildFireParticles);
-        }
+        //if (wildFireParticles != null)
+        //{
+        //    Destroy(wildFireParticles);
+        //}
 
         if(alwaysLit == true)
         {
@@ -45,9 +45,9 @@ public class Pyre : MonoBehaviour {
             if (!isBurningPlayer && !isChangingScene)
             {
                 GetComponent<ScreenFade>().StartFadingOut();
-                GameObject wildFire = Instantiate(wildFireParticles);
-                wildFire.transform.SetParent(GameObject.Find("FollowHead").transform);
-                wildFire.transform.localPosition = GameObject.Find("FollowHead").transform.forward;
+                //GameObject wildFire = Instantiate(wildFireParticles);
+                //wildFire.transform.SetParent(GameObject.Find("FollowHead").transform);
+                //wildFire.transform.localPosition = GameObject.Find("FollowHead").transform.forward;
                 isBurningPlayer = true;
             }
         }
@@ -74,8 +74,13 @@ public class Pyre : MonoBehaviour {
     }
 
 
-    private void ChangeScene()
+    public void ChangeScene()
     {
+        foreach (LineRender lr in FindObjectsOfType<LineRender>())
+        {
+            if (lr.enabled) lr.enabled = false;
+        }
+
         /* Add effects and stuff here */
         if (nextSceneName != "")
         {

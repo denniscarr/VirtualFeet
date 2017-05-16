@@ -130,8 +130,6 @@ public class TileLevelManager : MonoBehaviour {
 
 	void Lose(){
 
-		GameObject.Find ("Pyre").SendMessage ("unLight");
-
 		isfunction = false;
 
 		Debug.Log ("lose" + isfunction);
@@ -147,10 +145,9 @@ public class TileLevelManager : MonoBehaviour {
 
 	void Win(){
 
+        GameObject.Find("Pyre").SendMessage("Light");
 
-
-		Debug.Log ("win");
-		
+        Debug.Log ("win");		
 	}
 
 	void StepCheck ()

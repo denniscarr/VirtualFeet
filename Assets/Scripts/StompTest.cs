@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StompTest : MonoBehaviour {
 
@@ -56,6 +57,11 @@ public class StompTest : MonoBehaviour {
 
 	void Update ()
 	{
+        if (SceneManager.GetActiveScene().name == "Drawsometing" && !GetComponent<LineRender>().enabled)
+        {
+            GetComponent<LineRender>().enabled = true;
+        }
+
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb.velocity.magnitude > 20)
         {
@@ -132,16 +138,16 @@ public class StompTest : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        //if (collision.gameObject.tag == "Foot Pickup" && footGlue)
-        //{
-        //    Debug.Log("Touched a pickup item.");
+        if (collision.gameObject.tag == "Foot Pickup")
+        {
+            Debug.Log("Touched a pickup item.");
 
-        //    // Attach to foot with joint.
-        //    SpringJoint newJoint = collision.gameObject.AddComponent<SpringJoint>();
-        //    newJoint.connectedBody = GetComponent<Rigidbody>();
-        //    newJoint.spring = jointSpring;
-        //    newJoint.breakForce = jointBreakForce;
-        //}
+            // Attach to foot with joint.
+            SpringJoint newJoint = collision.gameObject.AddComponent<SpringJoint>();
+            newJoint.connectedBody = GetComponent<Rigidbody>();
+            newJoint.spring = jointSpring;
+            newJoint.breakForce = jointBreakForce;
+        }
     }
 
 	void OnTriggerEnter(Collider collider) 

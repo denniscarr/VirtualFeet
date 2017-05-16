@@ -57,6 +57,7 @@ public class ModelFaceController : MonoBehaviour {
         transformValue = 0;
         pyreObj = GameObject.Find("Pyre");
         pyreScript = pyreObj.GetComponent<Pyre>();
+        target = GameObject.Find("VRCamera").transform;
 
         moveFace = GameObject.FindGameObjectWithTag("skull").GetComponent<MoveFaceTowardsPlayer>();
 
