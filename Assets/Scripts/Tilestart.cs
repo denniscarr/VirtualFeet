@@ -64,8 +64,9 @@ public class Tilestart : MonoBehaviour {
 			}
 
 			else if (tileLevelManager.enabled == true) {
-				
+
 				if (tileLevelManager.isfunction == false) {
+					
 					startclosing = true;
 					startopen = false;
 

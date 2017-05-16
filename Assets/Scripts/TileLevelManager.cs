@@ -14,7 +14,7 @@ public class TileLevelManager : MonoBehaviour {
 	AudioSource tune;
 	int clipToPlay = 0;
 	[SerializeField] string[] randomtunes;
-	int i;
+	int steptile;
 	public AudioClip lose;
 	public AudioClip startAudio;
 	private Color originalColor;
@@ -39,7 +39,7 @@ public class TileLevelManager : MonoBehaviour {
 
 		Invoke ("PlaySound", 3f);
 
-		i = 0;
+		steptile = 0;
 
 		
 	}
@@ -133,8 +133,10 @@ public class TileLevelManager : MonoBehaviour {
 		GameObject.Find ("Pyre").SendMessage ("unLight");
 
 		isfunction = false;
+
 		Debug.Log ("lose" + isfunction);
-        FindObjectOfType<Tilestart>().startPressed = false;
+
+		FindObjectOfType<Tilestart> ().startPressed = false;
 		FindObjectOfType<Tilestart>().startclosing = false;
 		FindObjectOfType<Tilestart>().startopen = true;
 
@@ -152,31 +154,38 @@ public class TileLevelManager : MonoBehaviour {
 	}
 
 	void StepCheck ()
+
 	{
+		Debug.Log ("steptile:" + steptile);
 
-		if (playersteps.Count != 0) {
+		if (playersteps.Count > steptile) {
 			
-			if (!playersteps [i].Equals ("null")) {
+			if (playersteps [steptile] != null) {
 
-				for (int i = 1; i < playersteps.Count; i++) {
 
-					if (playersteps [i] == playersteps [i - 1]) {
 
-						playersteps.RemoveAt(i);
+				for (int j = 1; j < playersteps.Count; j++) {
+
+					if (playersteps [j] == playersteps [j-1]) {
+
+						playersteps.RemoveAt(j);
 					}
 				}
 				
-				if (randomtunes [i] == playersteps [i]) {
-					Debug.Log ("success " + i);
-					i = i + 1;
+				if (randomtunes [steptile] == playersteps [steptile]) 
+				{
+					Debug.Log ("success " + steptile);
+					steptile = steptile + 1;
 				} 
+
 				else {
+					
 					Lose ();
 				}
 			}
 		}
 		
-		if (i == 3) {
+		if (steptile == 3) {
 			Win ();
 		}
 	}
@@ -216,15 +225,15 @@ public class TileLevelManager : MonoBehaviour {
 
 		Invoke ("PlaySound", 1.5f);
 
-		i = 0;
+		steptile = 0;
 
 		clipToPlay = 0;
 
 		Debug.Log ("setup");
 
-		for (i = 0; i < tiles.Count; i++) { 
+		for (int k = 0; k < tiles.Count; k++) { 
 
-			tiles[i].GetComponent<TileManager> ().reset = true; 
+			tiles[k].GetComponent<TileManager> ().reset = true; 
 		} 
 
 	}
