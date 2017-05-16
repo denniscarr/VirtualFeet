@@ -18,10 +18,16 @@ public class Pyre : MonoBehaviour {
     public bool alwaysLit;
 
     bool isBurningPlayer;
+    bool isChangingScene;
 
     void Start()
     {
         GetComponent<ScreenFade>().StartFadingIn();
+
+        if (wildFireParticles != null)
+        {
+            Destroy(wildFireParticles);
+        }
 
         if(alwaysLit == true)
         {
@@ -36,7 +42,7 @@ public class Pyre : MonoBehaviour {
         // If I am lit, check whether the player has both feet inside me.
         if (lit && feetInsideMe >= requiredFeet)
         {
-            if (!isBurningPlayer)
+            if (!isBurningPlayer && !isChangingScene)
             {
                 GetComponent<ScreenFade>().StartFadingOut();
                 GameObject wildFire = Instantiate(wildFireParticles);
@@ -58,7 +64,12 @@ public class Pyre : MonoBehaviour {
     {
         if (GetComponent<ScreenFade>().isFinishedFading)
         {
-            Invoke("ChangeScene", 1f);
+            if (!isChangingScene)
+            {
+                Invoke("ChangeScene", 1f);
+                isChangingScene = true;
+            }
+            isBurningPlayer = false;
         }
     }
 
@@ -68,7 +79,8 @@ public class Pyre : MonoBehaviour {
         /* Add effects and stuff here */
         if (nextSceneName != "")
         {
-            SceneManager.LoadScene(nextSceneName);
+            SteamVR_LoadLevel.Begin(nextSceneName);
+            //SceneManager.LoadScene(nextSceneName);
         }
     }
 
